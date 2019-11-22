@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="10dp"
+    tools:context=".MainActivity">
+
+    <ImageButton
+        android:id="@+id/epuppyButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/epuppy_icon"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-4dp" />
+
+    <ImageButton
+        android:id="@+id/settingsButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/settings_icon"
+        tools:layout_editor_absoluteX="383dp"
+        tools:layout_editor_absoluteY="-3dp" />
+
+    <TextView
+        android:id="@+id/currentMonth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Week, 25 NOV"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        tools:layout_editor_absoluteX="102dp"
+        tools:layout_editor_absoluteY="121dp" />
+
+    <RelativeLayout
+        android:layout_width="317dp"
+        android:layout_height="376dp"
+        android:layout_margin="50dp"
+        android:background="#00726D6D"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        tools:context="Android.in.barchart.MainActivity"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="216dp">
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart"
+            android:layout_width="266dp"
+            android:layout_height="340dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/yearButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Month"
+        tools:layout_editor_absoluteX="153dp"
+        tools:layout_editor_absoluteY="612dp" />
+
+    <Button
+        android:id="@+id/yearButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Year"
+        tools:layout_editor_absoluteX="263dp"
+        tools:layout_editor_absoluteY="612dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
