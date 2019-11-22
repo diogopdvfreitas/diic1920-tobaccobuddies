@@ -1,8 +1,14 @@
+#include <math.h>
+
+/* --- GLOBAL VARIABLES --- */
+
 const int INCR_BUTTON = 2;
 const int DECR_BUTTON = 3;
 const int R_PIN = 9;
 const int G_PIN = 10;
 const int B_PIN = 11;
+
+/* --- INPUT DETECTION VARIABLES --- */
 
 const int LONG_PRESS = 3000;
 
@@ -20,7 +26,56 @@ int decrTimeEndPressed = 0;               // Time the button was released
 int decrTimeHold = 0;                     // How long the button was held
 int decrTimeReleased = 0;                 // How long the button released
 
+/* --- FUNCTIONALITY VARIABLES --- */
+
 int cigarettesSmoked = 0;
+int limit = 10;
+
+/* --- AUXILIARY METHODS --- */
+
+void setColor (unsigned char red, unsigned char green, unsigned char blue) {
+  analogWrite(R_PIN, red);   
+  analogWrite(G_PIN, green); 
+  analogWrite(B_PIN, blue); 
+}
+
+void ledBlink(int nTimes, float nTimeAppart, unsigned char red, unsigned char green, unsigned char blue) {
+  int prevColor[] = {analogRead(R_PIN), analogRead(G_PIN), analogRead(B_PIN)};
+  int millis = nTimeAppart * 1000;
+  for(int i = 0; i <= nTimes - 1; i++) {
+    setColor(red, green, blue); delay(millis); setColor(0, 0, 0); delay(millis);
+  }
+  setColor(prevColor[0], prevColor[1], prevColor[2]);
+}
+
+/* --- FUNCTIONALITY METHODS --- */
+
+void incrementCigsSmoked() {
+  cigarettesSmoked++;
+  Serial.print("Number of Cigarettes Smoked: "); Serial.println(cigarettesSmoked);
+  if (cigarettesSmoked <= limit)
+    ledBlink(2, 0.5, 255, 0, 0);
+  else
+    ledBlink(5, 0.25, 255, 0, 0);
+}
+
+void decrementCigsSmoked() {
+  if (cigarettesSmoked > 0) {
+    cigarettesSmoked--;
+    Serial.print("Number of Cigarettes Smoked: "); Serial.println(cigarettesSmoked);
+    ledBlink(2, 0.5, 0, 255, 0);
+  }
+}
+
+void setColorBasedOnSmoked() {
+  float percentage = (float) cigarettesSmoked / (float) limit;
+  int red = (int) round(255 * percentage);
+  if (red > 255) red = 255;
+  int green = 255 - red;
+  setColor(red, green, 0);
+}
+
+/* --- SETUP & SETUP_AUX METHODS --- */
 
 void setup() {
   Serial.begin(9600);
@@ -30,15 +85,13 @@ void setup() {
   pinMode(R_PIN, OUTPUT); 
   pinMode(G_PIN, OUTPUT);
   pinMode(B_PIN, OUTPUT);
+
+  setColorBasedOnSmoked();
 }    
 
-void setColor (unsigned char red, unsigned char green, unsigned char blue) {     
-  analogWrite(R_PIN, red);   
-  analogWrite(G_PIN, green); 
-  analogWrite(B_PIN, blue); 
-}
+/* --- LOPP & LOOP_AUX METHODS --- */
 
-void loop() {    
+void loop() {
   currIncrButtState = digitalRead(INCR_BUTTON);
   if (currIncrButtState != lastIncrButtState) {
     updateIncrButtonState();
@@ -61,11 +114,12 @@ void loop() {
     updateDecrButtonCounter();
   }
 
+  setColorBasedOnSmoked();
   lastIncrButtState = currIncrButtState;
   lastDecrButtState = currDecrButtState;
 }
 
-void updateIncrButtonState(){
+void updateIncrButtonState() {
   /*  HIGH == Button Pressed 
       LOW == Button Released */
   if(currIncrButtState == HIGH) {
@@ -78,14 +132,14 @@ void updateIncrButtonState(){
   }
 }
 
-void updateIncrButtonCounter(){
+void updateIncrButtonCounter() {
   if(currIncrButtState == HIGH)
     incrTimeHold = millis() - incrTimeStartPressed;                 // Registers for how long the button has been pressed currently
   else
     incrTimeReleased = millis() - incrTimeEndPressed;               // Registers for how long the button has been released currently
 }
 
-void updateDecrButtonState(){
+void updateDecrButtonState() {
   /*  HIGH == Button Pressed 
       LOW == Button Released */
   if(currDecrButtState == HIGH) {
@@ -98,25 +152,9 @@ void updateDecrButtonState(){
   }
 }
 
-void updateDecrButtonCounter(){
+void updateDecrButtonCounter() {
   if(currDecrButtState == HIGH)
     decrTimeHold = millis() - decrTimeStartPressed;                 // Registers for how long the button has been pressed currently
   else
     decrTimeReleased = millis() - decrTimeEndPressed;               // Registers for how long the button has been released currently
-}
-
-void incrementCigsSmoked() {
-  cigarettesSmoked++;
-  Serial.print("Number of Cigarettes Smoked: "); Serial.println(cigarettesSmoked);
-  setColor(0, 255, 0);
-  delay(1000);
-  setColor(0, 0, 0);
-}
-
-void decrementCigsSmoked() {
-  cigarettesSmoked--;
-  Serial.print("Number of Cigarettes Smoked: "); Serial.println(cigarettesSmoked);
-  setColor(255, 0, 0);
-  delay(1000);
-  setColor(0, 0, 0);
 }
