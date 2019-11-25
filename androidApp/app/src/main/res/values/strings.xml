@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Tobacco Buddies</string>
+    <string name="my_preferences">SharedPreferencesKeyString</string>
 </resources>
