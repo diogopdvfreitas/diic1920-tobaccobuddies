@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
 public class NotificationsActivity extends AppCompatActivity {
@@ -24,56 +25,56 @@ public class NotificationsActivity extends AppCompatActivity {
         });
 
         // Code for All Notifications button
-        Button allSwitch = findViewById(R.id.allSwitch);
+        final CompoundButton allSwitch = findViewById(R.id.allSwitch);
         allSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("allNotifications");
+                System.out.println("allNotifications: " + allSwitch.isChecked());
             }
         });
 
         // Code for App Vibration button
-        Button appVibration = findViewById(R.id.vibAppSwitch);
+        final CompoundButton appVibration = findViewById(R.id.vibAppSwitch);
         appVibration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("appVibration");
+                System.out.println("appVibration: " + appVibration.isChecked());
             }
         });
 
         // Code for Pack Vibration button
-        Button packVibration = findViewById(R.id.vibPackSwitch);
+        final CompoundButton packVibration = findViewById(R.id.vibPackSwitch);
         packVibration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("packVibration");
+                System.out.println("packVibration: " + packVibration.isChecked());
             }
         });
 
         // Code for Your Limits button
-        Button yourLimits = findViewById(R.id.limitsSwitch);
+        final CompoundButton yourLimits = findViewById(R.id.limitsSwitch);
         yourLimits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("yourLimits");
+                System.out.println("yourLimits: " + yourLimits.isChecked());
             }
         });
 
         // Code for Buddy Limits button
-        Button buddyLimits = findViewById(R.id.limitsSwitch2);
+        final CompoundButton buddyLimits = findViewById(R.id.limitsSwitch2);
         buddyLimits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("buddyLimits");
+                System.out.println("buddyLimits: " + buddyLimits.isChecked());
             }
         });
 
         // Code for Progress button
-        Button progress = findViewById(R.id.progressSwitch);
+        final CompoundButton progress = findViewById(R.id.progressSwitch);
         progress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("progress");
+                System.out.println("progress: " + progress.isChecked());
             }
         });
 
