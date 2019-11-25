@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="47dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="x" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:paddingLeft="115dp"
+        android:paddingTop="10dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="0dp"
+        android:text="Notifications"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:visibility="visible" />
+
+    <Switch
+        android:id="@+id/allSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:switchTextAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:text="All Notifications"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <Switch
+        android:id="@+id/vibAppSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:switchTextAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:text="App Vibration "
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <Switch
+        android:id="@+id/vibPackSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:switchTextAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:text="Pack Vibration"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <Switch
+        android:id="@+id/limitsSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:switchTextAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:text="Your Limits"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <Switch
+        android:id="@+id/limitsSwitch2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:switchTextAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:text="Buddy Limits"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <Switch
+        android:id="@+id/progressSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:switchTextAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:text="Progress "
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+</LinearLayout>
