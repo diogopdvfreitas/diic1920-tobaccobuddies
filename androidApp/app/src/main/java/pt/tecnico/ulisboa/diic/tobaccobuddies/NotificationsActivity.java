@@ -32,15 +32,13 @@ public class NotificationsActivity extends AppCompatActivity {
 
         // Code for All Notifications button
         final CompoundButton allSwitch = findViewById(R.id.allSwitch);
+        allSwitch.setChecked(sharedPreferences.getBoolean("allNotifications", true));
         allSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println("allNotifications: " + allSwitch.isChecked());
 
-                if(allSwitch.isChecked())
-                    editor.putInt("allNotifications",1);
-                else
-                    editor.putInt("allNotifications",0);
+                editor.putBoolean("allNotifications", allSwitch.isChecked());
                 editor.commit();
 
                 System.out.println(sharedPreferences.getAll());
@@ -49,15 +47,13 @@ public class NotificationsActivity extends AppCompatActivity {
 
         // Code for App Vibration button
         final CompoundButton appVibration = findViewById(R.id.vibAppSwitch);
+        appVibration.setChecked(sharedPreferences.getBoolean("appVibration", true));
         appVibration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println("appVibration: " + appVibration.isChecked());
 
-                if(appVibration.isChecked())
-                    editor.putInt("appVibration",1);
-                else
-                    editor.putInt("appVibration",0);
+                editor.putBoolean("appVibration", appVibration.isChecked());
                 editor.commit();
 
                 System.out.println(sharedPreferences.getAll());
@@ -66,15 +62,13 @@ public class NotificationsActivity extends AppCompatActivity {
 
         // Code for Pack Vibration button
         final CompoundButton packVibration = findViewById(R.id.vibPackSwitch);
+        packVibration.setChecked(sharedPreferences.getBoolean("packVibration", true));
         packVibration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println("packVibration: " + packVibration.isChecked());
 
-                if(packVibration.isChecked())
-                    editor.putInt("packVibration",1);
-                else
-                    editor.putInt("packVibration",0);
+                editor.putBoolean("packVibration", packVibration.isChecked());
                 editor.commit();
 
                 System.out.println(sharedPreferences.getAll());
@@ -83,15 +77,13 @@ public class NotificationsActivity extends AppCompatActivity {
 
         // Code for Your Limits button
         final CompoundButton yourLimits = findViewById(R.id.limitsSwitch);
+        yourLimits.setChecked(sharedPreferences.getBoolean("yourLimits", true));
         yourLimits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println("yourLimits: " + yourLimits.isChecked());
 
-                if(yourLimits.isChecked())
-                    editor.putInt("yourLimits",1);
-                else
-                    editor.putInt("yourLimits",0);
+                editor.putBoolean("yourLimits", yourLimits.isChecked());
                 editor.commit();
 
                 System.out.println(sharedPreferences.getAll());
@@ -100,15 +92,13 @@ public class NotificationsActivity extends AppCompatActivity {
 
         // Code for Buddy Limits button
         final CompoundButton buddyLimits = findViewById(R.id.limitsSwitch2);
+        buddyLimits.setChecked(sharedPreferences.getBoolean("buddyLimits", true));
         buddyLimits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println("buddyLimits: " + buddyLimits.isChecked());
 
-                if(buddyLimits.isChecked())
-                    editor.putInt("buddyLimits",1);
-                else
-                    editor.putInt("buddyLimits",0);
+                editor.putBoolean("buddyLimits", buddyLimits.isChecked());
                 editor.commit();
 
                 System.out.println(sharedPreferences.getAll());
@@ -117,15 +107,13 @@ public class NotificationsActivity extends AppCompatActivity {
 
         // Code for Progress button
         final CompoundButton progress = findViewById(R.id.progressSwitch);
+        progress.setChecked(sharedPreferences.getBoolean("progress", true));
         progress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println("progress: " + progress.isChecked());
 
-                if(progress.isChecked())
-                    editor.putInt("progress",1);
-                else
-                    editor.putInt("progress",0);
+                editor.putBoolean("progress", progress.isChecked());
                 editor.commit();
 
                 System.out.println(sharedPreferences.getAll());

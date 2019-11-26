@@ -30,22 +30,22 @@ public class MainActivity extends AppCompatActivity {
         final SharedPreferences.Editor editor = sharedPreferences.edit();
 
         if(!sharedPreferences.contains("allNotifications")){
-            editor.putInt("allNotifications",1);
+            editor.putBoolean("allNotifications",true);
         }
         if(!sharedPreferences.contains("appVibration")){
-            editor.putInt("appVibration",1);
+            editor.putBoolean("appVibration",true);
         }
         if(!sharedPreferences.contains("packVibration")){
-            editor.putInt("packVibration",1);
+            editor.putBoolean("packVibration",true);
         }
         if(!sharedPreferences.contains("yourLimits")){
-            editor.putInt("yourLimits",1);
+            editor.putBoolean("yourLimits",true);
         }
         if(!sharedPreferences.contains("buddyLimits")){
-            editor.putInt("buddyLimits",1);
+            editor.putBoolean("buddyLimits",true);
         }
         if(!sharedPreferences.contains("progress")){
-            editor.putInt("progress",1);
+            editor.putBoolean("progress",true);
         }
         editor.commit();
     }
