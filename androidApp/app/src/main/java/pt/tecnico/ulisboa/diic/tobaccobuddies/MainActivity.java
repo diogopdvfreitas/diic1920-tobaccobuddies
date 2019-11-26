@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         checkDefaultSettings();
 
         // DEBUG used to launch activities to test
-        Intent intent = new Intent(this, NotificationsActivity.class);
+        Intent intent = new Intent(this, BuddyPageActivity.class);
         startActivity(intent);
 
     }
@@ -53,5 +53,3 @@ public class MainActivity extends AppCompatActivity {
 
 
 }
-
-
