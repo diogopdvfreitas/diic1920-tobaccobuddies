@@ -23,7 +23,7 @@
         android:layout_height="100dp"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/settings_icon"
-        tools:layout_editor_absoluteX="383dp"
+        tools:layout_editor_absoluteX="302dp"
         tools:layout_editor_absoluteY="-3dp" />
 
     <TextView
