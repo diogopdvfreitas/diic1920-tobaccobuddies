@@ -29,6 +29,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:text="x"
+        android:background="@drawable/border_close_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

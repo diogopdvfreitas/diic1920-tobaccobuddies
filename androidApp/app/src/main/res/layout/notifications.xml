@@ -9,11 +9,12 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
+        android:background="@drawable/border_close_icon"
         android:text="x" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:paddingLeft="115dp"
@@ -21,6 +22,7 @@
         android:paddingRight="0dp"
         android:paddingBottom="0dp"
         android:text="Notifications"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         android:visibility="visible" />
 
