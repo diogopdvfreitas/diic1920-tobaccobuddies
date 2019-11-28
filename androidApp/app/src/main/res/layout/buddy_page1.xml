@@ -93,6 +93,7 @@
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
+        android:background="@drawable/textview_broder"
         app:layout_constraintBottom_toTopOf="@+id/buddies_pink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -102,28 +103,28 @@
 
     <ImageView
         android:id="@+id/you_pack"
-        android:layout_width="166dp"
-        android:layout_height="187dp"
+        android:layout_width="172dp"
+        android:layout_height="91dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="347dp"
         app:layout_constraintStart_toStartOf="@+id/border_view"
         app:layout_constraintTop_toTopOf="@+id/border_view"
-        app:srcCompat="@drawable/pack_you" />
+        app:srcCompat="@drawable/pack_you_cropped" />
 
     <ImageView
         android:id="@+id/buddy_pack"
-        android:layout_width="166dp"
-        android:layout_height="187dp"
+        android:layout_width="172dp"
+        android:layout_height="91dp"
         android:layout_marginTop="347dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="@+id/border_view"
         app:layout_constraintTop_toTopOf="@+id/border_view"
-        app:srcCompat="@drawable/pack_buddy" />
+        app:srcCompat="@drawable/pack_buddy_cropped" />
 
     <ImageView
-        android:id="@+id/cigarette1"
+        android:id="@+id/you_cigarette1"
         android:layout_width="124dp"
         android:layout_height="32dp"
         android:layout_marginStart="39dp"
@@ -133,7 +134,7 @@
         app:srcCompat="@drawable/cigarrete" />
 
     <ImageView
-        android:id="@+id/cigarette2"
+        android:id="@+id/you_cigarette2"
         android:layout_width="124dp"
         android:layout_height="32dp"
         android:layout_marginStart="39dp"
@@ -144,7 +145,7 @@
         app:srcCompat="@drawable/cigarrete" />
 
     <ImageView
-        android:id="@+id/cigarette3"
+        android:id="@+id/you_cigarette3"
         android:layout_width="124dp"
         android:layout_height="32dp"
         android:layout_marginStart="39dp"
@@ -152,6 +153,19 @@
         android:layout_marginBottom="70dp"
         app:layout_constraintBottom_toTopOf="@+id/you_pack"
         app:layout_constraintStart_toStartOf="@+id/border_view"
+        app:srcCompat="@drawable/cigarrete" />
+
+    <ImageView
+        android:id="@+id/buddy_cigarette1"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/buddy_pack"
+        app:layout_constraintEnd_toEndOf="@+id/border_view"
+        app:layout_constraintStart_toEndOf="@+id/you_cigarette1"
         app:srcCompat="@drawable/cigarrete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
