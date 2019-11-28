@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/weekMenu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="5dp"
@@ -23,7 +24,7 @@
         android:layout_height="100dp"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/settings_icon"
-        tools:layout_editor_absoluteX="383dp"
+        tools:layout_editor_absoluteX="299dp"
         tools:layout_editor_absoluteY="-3dp" />
 
     <TextView

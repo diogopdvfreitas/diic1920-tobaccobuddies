@@ -34,6 +34,16 @@ public class MenuMonth extends AppCompatActivity{
         barChart = (BarChart) findViewById(R.id.barChart);
         ArrayList<Integer> barEntries = new ArrayList<>();
         //this array is where we need to put values from arduino and start creating the barChart
+
+        Button week = (Button) findViewById(R.id.weekMenu);
+        week.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+
+        });
     }
 
     //Open shared preferences (Settings) to check if the values exist

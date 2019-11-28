@@ -2,6 +2,7 @@ package pt.tecnico.ulisboa.diic.tobaccobuddies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -34,6 +35,19 @@ public class MenuWeek extends AppCompatActivity{
         barChart = (BarChart) findViewById(R.id.barChart);
         ArrayList<Integer> barEntries = new ArrayList<>();
         //this array is where we need to put values from arduino and start creating the barChart
+        setContentView(R.layout.menu_page2_week);
+        Button month = (Button) findViewById(R.id.monthButton);
+        month.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MenuMonth.class);
+                startActivity(intent);
+            }
+        });
+
+
+        Button year = (Button) findViewById(R.id.yearButton);
+
     }
 
     //Open shared preferences (Settings) to check if the values exist
