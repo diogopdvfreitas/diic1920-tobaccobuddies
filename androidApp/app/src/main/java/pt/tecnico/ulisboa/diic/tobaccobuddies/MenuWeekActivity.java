@@ -17,7 +17,7 @@ public class MenuWeekActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_week);
+        setContentView(R.layout.menu_page2_week);
 
         barChart = (BarChart) findViewById(R.id.barChart);
         ArrayList<Integer> barEntries = new ArrayList<>();

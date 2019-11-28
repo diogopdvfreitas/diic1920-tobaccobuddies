@@ -17,13 +17,13 @@ public class MenuYearActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_year);
+        setContentView(R.layout.menu_page2_year);
         //creating barChart
         barChart = (BarChart) findViewById(R.id.barChart);
         ArrayList<Integer> barEntries = new ArrayList<>();
         //this array is where we need to put values from arduino and start creating the barChart
         setContentView(R.layout.menu_page2_year);
-        Button week = (Button) findViewById(R.id.weekButton2);
+        Button week = (Button) findViewById(R.id.weekButton);
         week.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -33,7 +33,7 @@ public class MenuYearActivity extends AppCompatActivity {
             }
         });
 
-        Button month = (Button) findViewById(R.id.monthButton2);
+        Button month = (Button) findViewById(R.id.monthButton);
         System.out.println(month);
         month.setOnClickListener(new View.OnClickListener() {
             @Override
