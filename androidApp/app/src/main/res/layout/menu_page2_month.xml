@@ -23,7 +23,7 @@
         android:layout_height="100dp"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/settings_icon"
-        tools:layout_editor_absoluteX="383dp"
+        tools:layout_editor_absoluteX="299dp"
         tools:layout_editor_absoluteY="-3dp" />
 
     <TextView
@@ -32,7 +32,9 @@
         android:layout_height="wrap_content"
         android:text="November"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        tools:layout_editor_absoluteX="146dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="125dp" />
 
     <RelativeLayout
@@ -44,8 +46,10 @@
         android:paddingTop="16dp"
         android:paddingRight="16dp"
         android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         tools:context="Android.in.barchart.MainActivity"
-        tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="216dp">
 
         <com.github.mikephil.charting.charts.BarChart
@@ -62,17 +66,23 @@
         android:id="@+id/yearButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Week"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="612dp" />
+        android:layout_marginTop="612dp"
+        android:text="Year"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/weekButton"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/yearButton"
+        android:id="@+id/weekButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Year"
-        tools:layout_editor_absoluteX="265dp"
-        tools:layout_editor_absoluteY="612dp" />
+        android:layout_marginTop="612dp"
+        android:text="Week"
+        app:layout_constraintEnd_toStartOf="@+id/yearButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

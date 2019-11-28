@@ -23,7 +23,7 @@
         android:layout_height="100dp"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/settings_icon"
-        tools:layout_editor_absoluteX="383dp"
+        tools:layout_editor_absoluteX="302dp"
         tools:layout_editor_absoluteY="-3dp" />
 
     <TextView
@@ -32,20 +32,28 @@
         android:layout_height="wrap_content"
         android:text="2019"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        tools:layout_editor_absoluteX="197dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="121dp" />
 
     <RelativeLayout
         android:layout_width="317dp"
         android:layout_height="376dp"
         android:layout_margin="50dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
         android:background="#00726D6D"
         android:paddingLeft="16dp"
         android:paddingTop="16dp"
         android:paddingRight="16dp"
         android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         tools:context="Android.in.barchart.MainActivity"
-        tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="216dp">
 
         <com.github.mikephil.charting.charts.BarChart
@@ -59,20 +67,26 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/yearButton"
+        android:id="@+id/weekButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="612dp"
         android:text="Week"
-        tools:layout_editor_absoluteX="149dp"
-        tools:layout_editor_absoluteY="612dp" />
+        app:layout_constraintEnd_toStartOf="@+id/monthButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/yearButton"
+        android:id="@+id/monthButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="612dp"
         android:text="Month"
-        tools:layout_editor_absoluteX="261dp"
-        tools:layout_editor_absoluteY="612dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.77"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
