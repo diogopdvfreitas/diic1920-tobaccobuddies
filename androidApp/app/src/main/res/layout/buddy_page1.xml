@@ -8,28 +8,52 @@
     android:layout_marginTop="10dp"
     tools:context=".MainActivity">
 
-    <ImageButton
-        android:id="@+id/epuppyButton2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+    <TextView
+        android:id="@+id/epuppy_background"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:scaleType="centerCrop"
+        android:background="@drawable/border_epuppy_settings"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/e_puppy" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/settingsButton2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:id="@+id/epuppyButton2"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#eaa289"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="@+id/epuppy_background"
+        app:layout_constraintTop_toTopOf="@+id/epuppy_background"
+        app:srcCompat="@drawable/e_puppy" />
+
+    <TextView
+        android:id="@+id/settings_background"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:scaleType="centerCrop"
+        android:background="@drawable/border_epuppy_settings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/settingsButton2"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:background="#eaa289"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="@+id/settings_background"
+        app:layout_constraintTop_toTopOf="@+id/settings_background"
         app:srcCompat="@drawable/settings_icon" />
 
     <ImageView
@@ -93,9 +117,10 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/border_general"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/buddies_pink"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buddies_pink"
         app:layout_constraintVertical_bias="0.0" />
