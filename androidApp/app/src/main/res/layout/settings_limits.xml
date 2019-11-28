@@ -33,7 +33,7 @@
         android:layout_height="57dp"
         android:layout_marginStart="9dp"
         android:layout_marginLeft="9dp"
-        android:layout_marginTop="62dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="53dp"
         android:layout_marginRight="53dp"
         android:text="per day"
@@ -41,6 +41,7 @@
         android:textSize="34dp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/cigarette_lit_icon"
         app:layout_constraintTop_toBottomOf="@+id/limits_text" />
 
@@ -83,13 +84,14 @@
         android:layout_height="170dp"
         android:layout_marginStart="54dp"
         android:layout_marginLeft="54dp"
-        android:layout_marginTop="126dp"
+        android:layout_marginTop="115dp"
         android:layout_marginEnd="57dp"
         android:layout_marginRight="57dp"
         android:background="@drawable/border_limit"
         android:gravity="center"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/arrow_up"
         app:layout_constraintTop_toBottomOf="@+id/per_day" />
 
