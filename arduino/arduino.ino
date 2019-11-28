@@ -1,10 +1,15 @@
 #include <math.h>
+#include <NewPing.h>
 #include <BluetoothSerial.h>
 
 /* --- GLOBAL VARIABLES --- */
 
 const int INCR_BUTTON = 23;
 const int DECR_BUTTON = 22;
+
+const uint8_t SENSE_ECHOPIN = 27;
+const uint8_t SENSE_TRIGPIN = 26;
+
 const uint8_t R_PIN = 18;
 const uint8_t G_PIN = 19;
 const uint8_t B_PIN = 21;
@@ -19,9 +24,10 @@ BluetoothSerial esp32BT;
 
 char messageReceived[100];
 
-/* --- INPUT DETECTION VARIABLES --- */
+/* --- COMPONENTS VARIABLES --- */
 
 const int LONG_PRESS = 3000;
+const int MAX_DISTANCE = 50;
 
 int currIncrButtState = 0;                // Button's current state
 int lastIncrButtState = 1;                // Button's state in the last loop
@@ -36,6 +42,9 @@ int decrTimeStartPressed = 0;             // Time the button was pressed
 int decrTimeEndPressed = 0;               // Time the button was released
 int decrTimeHold = 0;                     // How long the button was held
 int decrTimeReleased = 0;                 // How long the button released
+
+NewPing sonar(SENSE_TRIGPIN, SENSE_ECHOPIN);
+double distance;
 
 int timeLedChange = 0;
 bool flagLEDBlink_awtConn = false;
@@ -57,6 +66,9 @@ void setup() {
   pinMode(INCR_BUTTON, INPUT);
   pinMode(DECR_BUTTON, INPUT);
 
+  pinMode(SENSE_ECHOPIN, INPUT);
+  pinMode(SENSE_TRIGPIN, OUTPUT);
+
   ledcSetup(R_LED, 5000, 8);
   ledcSetup(G_LED, 5000, 8);
   ledcSetup(B_LED, 5000, 8);
@@ -70,6 +82,10 @@ void setup() {
 /* --- LOPP & LOOP_AUX METHODS --- */
 
 void loop() {
+
+  distance = sonar.ping_cm();
+  Serial.print(distance); Serial.println(" cm");
+
   currIncrButtState = digitalRead(INCR_BUTTON);
   if (currIncrButtState != lastIncrButtState) {
     updateIncrButtonState();
@@ -77,9 +93,8 @@ void loop() {
       incrementCigsSmoked();
     }
   }
-  else {
+  else
     updateIncrButtonCounter();
-  }
 
   currDecrButtState = digitalRead(DECR_BUTTON);
   if (currDecrButtState != lastDecrButtState) {
@@ -88,12 +103,11 @@ void loop() {
       decrementCigsSmoked();
     }
   }
-  else {
+  else
     updateDecrButtonCounter();
-  }
 
   int ledChangeElapsedTime = millis() - timeLedChange;
-  if(flagLEDBlink_awtConn && ledChangeElapsedTime == 5000) {
+  if(flagLEDBlink_awtConn && ledChangeElapsedTime >= 5000) {
     ledBlink(2, 0.15, 0, 0, 255);
   }
 
