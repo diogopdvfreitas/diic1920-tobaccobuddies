@@ -15,7 +15,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/epuppy_icon" />
+        app:srcCompat="@drawable/e_puppy" />
 
     <ImageButton
         android:id="@+id/settingsButton"

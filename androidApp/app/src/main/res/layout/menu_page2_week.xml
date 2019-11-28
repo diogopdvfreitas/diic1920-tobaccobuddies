@@ -13,7 +13,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/epuppy_icon"
+        app:srcCompat="@drawable/e_puppy"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-4dp" />
 
