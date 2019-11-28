@@ -34,53 +34,124 @@
         app:srcCompat="@drawable/settings_icon" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/black_logo"
         android:layout_width="84dp"
         android:layout_height="78dp"
         android:layout_marginStart="84dp"
         android:layout_marginLeft="84dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/epuppyButton2"
-        app:srcCompat="@drawable/cigarette" />
+        app:srcCompat="@drawable/logo1" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/pink_logo"
         android:layout_width="84dp"
         android:layout_height="78dp"
         android:layout_marginStart="87dp"
         android:layout_marginLeft="87dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/epuppyButton2"
-        app:srcCompat="@drawable/cigarette2" />
+        app:srcCompat="@drawable/logo2" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/buddies_black"
         android:layout_width="145dp"
         android:layout_height="59dp"
         android:layout_marginStart="7dp"
         android:layout_marginLeft="7dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="46dp"
         android:text="Buddies"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textColor="#000"
         android:textSize="35dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/black_logo"
         app:layout_constraintTop_toBottomOf="@+id/settingsButton2" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/buddies_pink"
         android:layout_width="145dp"
         android:layout_height="59dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="46dp"
         android:text="Buddies"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textColor="	#eaa289"
         android:textSize="35dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/black_logo"
         app:layout_constraintTop_toBottomOf="@+id/settingsButton2" />
+
+    <TextView
+        android:id="@+id/border_view"
+        android:layout_width="368dp"
+        android:layout_height="441dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/buddies_pink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buddies_pink"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/you_pack"
+        android:layout_width="166dp"
+        android:layout_height="187dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="347dp"
+        app:layout_constraintStart_toStartOf="@+id/border_view"
+        app:layout_constraintTop_toTopOf="@+id/border_view"
+        app:srcCompat="@drawable/pack_you" />
+
+    <ImageView
+        android:id="@+id/buddy_pack"
+        android:layout_width="166dp"
+        android:layout_height="187dp"
+        android:layout_marginTop="347dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/border_view"
+        app:layout_constraintTop_toTopOf="@+id/border_view"
+        app:srcCompat="@drawable/pack_buddy" />
+
+    <ImageView
+        android:id="@+id/cigarette1"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        app:layout_constraintBottom_toTopOf="@+id/you_pack"
+        app:layout_constraintStart_toStartOf="@+id/border_view"
+        app:srcCompat="@drawable/cigarrete" />
+
+    <ImageView
+        android:id="@+id/cigarette2"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginBottom="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/you_pack"
+        app:layout_constraintStart_toStartOf="@+id/border_view"
+        app:srcCompat="@drawable/cigarrete" />
+
+    <ImageView
+        android:id="@+id/cigarette3"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginBottom="70dp"
+        app:layout_constraintBottom_toTopOf="@+id/you_pack"
+        app:layout_constraintStart_toStartOf="@+id/border_view"
+        app:srcCompat="@drawable/cigarrete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
