@@ -8,49 +8,82 @@
     android:layout_marginTop="10dp"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/epuppy_background"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/border_epuppy_settings"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
         android:id="@+id/epuppyButton"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#eaa289"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/e_puppy"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-4dp" />
+        app:layout_constraintStart_toStartOf="@+id/epuppy_background"
+        app:layout_constraintTop_toTopOf="@+id/epuppy_background"
+        app:srcCompat="@drawable/e_puppy" />
+
+    <TextView
+        android:id="@+id/settings_background"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/border_epuppy_settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/settingsButton"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:background="#eaa289"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/settings_icon"
-        tools:layout_editor_absoluteX="302dp"
-        tools:layout_editor_absoluteY="-3dp" />
+        app:layout_constraintEnd_toEndOf="@+id/settings_background"
+        app:layout_constraintTop_toTopOf="@+id/settings_background"
+        app:srcCompat="@drawable/settings_icon" />
 
     <TextView
         android:id="@+id/currentMonth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
         android:text="Week, 25 NOV"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="121dp" />
+        app:layout_constraintTop_toBottomOf="@+id/epuppyButton" />
 
     <RelativeLayout
+        android:id="@+id/relativeLayout5"
         android:layout_width="317dp"
         android:layout_height="376dp"
         android:layout_margin="50dp"
+        android:layout_marginTop="44dp"
         android:background="#00726D6D"
         android:paddingLeft="16dp"
         android:paddingTop="16dp"
         android:paddingRight="16dp"
         android:paddingBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:context="Android.in.barchart.MainActivity"
-        tools:layout_editor_absoluteY="216dp">
+        app:layout_constraintTop_toBottomOf="@+id/currentMonth"
+        tools:context="Android.in.barchart.MainActivity">
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barChart"
@@ -66,19 +99,23 @@
         android:id="@+id/weekButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
         android:text="Month"
-        app:layout_constraintEnd_toStartOf="@+id/yearButton"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="612dp" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout5" />
 
     <Button
         android:id="@+id/yearButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
         android:text="Year"
-        tools:layout_editor_absoluteX="246dp"
-        tools:layout_editor_absoluteY="612dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout5" />
 
     <TextView
         android:id="@+id/textView2"
@@ -87,9 +124,9 @@
         android:text="Buddy Page"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="694dp" />
+        tools:layout_editor_absoluteY="670dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
