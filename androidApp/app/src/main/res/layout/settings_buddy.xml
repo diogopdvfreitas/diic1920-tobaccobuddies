@@ -20,12 +20,17 @@
         android:id="@+id/buddy_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="143dp"
+        android:layout_marginLeft="143dp"
         android:layout_marginTop="56dp"
+        android:layout_marginEnd="143dp"
+        android:layout_marginRight="143dp"
         android:text="Buddy"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="143dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/add_buddy"
