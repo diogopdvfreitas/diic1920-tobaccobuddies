@@ -32,7 +32,9 @@
         android:layout_height="wrap_content"
         android:text="Week, 25 NOV"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        tools:layout_editor_absoluteX="102dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="121dp" />
 
     <RelativeLayout
@@ -44,8 +46,10 @@
         android:paddingTop="16dp"
         android:paddingRight="16dp"
         android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         tools:context="Android.in.barchart.MainActivity"
-        tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="216dp">
 
         <com.github.mikephil.charting.charts.BarChart
@@ -63,7 +67,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Month"
-        tools:layout_editor_absoluteX="134dp"
+        app:layout_constraintEnd_toStartOf="@+id/yearButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="612dp" />
 
     <Button
@@ -80,7 +86,9 @@
         android:layout_height="wrap_content"
         android:text="Buddy Page"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        tools:layout_editor_absoluteX="155dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="694dp" />
 
 
