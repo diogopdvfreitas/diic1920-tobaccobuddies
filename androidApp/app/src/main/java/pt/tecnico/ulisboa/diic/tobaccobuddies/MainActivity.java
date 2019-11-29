@@ -1,19 +1,31 @@
 package pt.tecnico.ulisboa.diic.tobaccobuddies;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private MainActivityViewModel viewModel;
+
+    boolean mBounded;
+    BluetoothService mService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buddy_page1);
+
+        startService(new Intent(this, BluetoothService.class));
 
         //Open shared preferences (Settings) to check if the values exist
         checkDefaultSettings();
@@ -49,6 +61,62 @@ public class MainActivity extends AppCompatActivity {
         }
         editor.commit();
     }
+
+    // Bluetooth Stuff
+
+    ServiceConnection mConnection = new ServiceConnection() {
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            Toast.makeText(MainActivity.this, "Service is disconnected",  Toast.LENGTH_LONG).show();
+            mBounded = false;
+            mService = null;
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            Toast.makeText(MainActivity.this, "Service is connected", Toast.LENGTH_LONG).show();
+            mBounded = true;
+            BluetoothService.LocalBinder mLocalBinder = (BluetoothService.LocalBinder) service;
+            mService = mLocalBinder.getServiceInstance();
+        }
+    };
+
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Intent mIntent = new Intent(this, BluetoothService.class);
+        bindService(mIntent, mConnection, BIND_AUTO_CREATE);
+
+
+        if(mService == null){
+            System.out.println("----- Main Null -----");
+        }
+        System.out.println(mConnection);
+        System.out.println(mBounded);
+
+        Thread myThread = new Thread(){
+            @Override
+            public void run() {
+                try{Thread.sleep(5000);}catch(Exception e){}
+                mService.sendMessage("<Message123>");
+            }
+        };
+        myThread.start();
+    }
+
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mBounded) {
+            unbindService(mConnection);
+            mBounded = false;
+        }
+    };
 
 
 
