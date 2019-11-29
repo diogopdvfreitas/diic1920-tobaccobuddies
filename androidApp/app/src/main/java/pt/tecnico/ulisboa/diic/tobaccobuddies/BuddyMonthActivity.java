@@ -1,28 +1,19 @@
 package pt.tecnico.ulisboa.diic.tobaccobuddies;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.github.mikephil.charting.charts.BarChart;
-
-import java.util.ArrayList;
 
 public class BuddyMonthActivity extends AppCompatActivity {
 
-    BarChart barChart;
-
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buddy_page3);
-
-
+        setContentView(R.layout.buddy_page1);
 
         // Code for Settings button
         ImageButton settingsButton = findViewById(R.id.settingsButton);
@@ -46,33 +37,16 @@ public class BuddyMonthActivity extends AppCompatActivity {
             }
         });
 
-        /* Button year = (Button) findViewById(R.id.yearButton);
-        year.setOnClickListener(new View.OnClickListener() {
+        // Code for swipe left button
+        ImageButton swipeLeftButton = findViewById(R.id.swipe_left);
+        swipeLeftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MenuYearActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        Button week = (Button) findViewById(R.id.weekButton);
-        System.out.println(week);
-        week.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MenuWeekActivity.class);
-                startActivity(intent);
-            }
-        }); */
-
-
-        ImageButton left = findViewById(R.id.swipe_left);
-        left.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                // start the correspondent Activity
                 Intent intent = new Intent(getApplicationContext(), MenuWeekActivity.class);
                 startActivity(intent);
             }
         });
+
     }
 }
