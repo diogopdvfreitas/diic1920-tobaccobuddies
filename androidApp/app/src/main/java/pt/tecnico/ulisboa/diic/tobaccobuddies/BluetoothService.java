@@ -2,7 +2,9 @@ package pt.tecnico.ulisboa.diic.tobaccobuddies;
 
 import android.app.Service;
 import android.bluetooth.BluetoothDevice;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Binder;
 import android.os.IBinder;
 import android.widget.Toast;
@@ -34,7 +36,7 @@ public class BluetoothService extends Service {
     public BluetoothService() {
         System.out.println("----- Start service -----");
 
-        editor.putStringSet("my_monthly_data", ["3","3","0","4","6","5","1","5","4","7","4","6","8","8","5","7","9","6","7","2","9","7","1","6","1","2","10","8","2","1"]);
+        editor.putStringSet("my_monthly_data",["3","3","0","4","6","5","1","5","4","7","4","6","8","8","5","7","9","6","7","2","9","7","1","6","1","2","10","8","2","1"]);
         editor.putStringSet("buddie_monthly_data", ["7","8","5","5","5","3","5","1","1","10","8","3","7","9","1","2","8","2","5","1","7","1","6","1","8","9","6","5","9","10"]);
         editor.putInt("my_limit", 10);
         editor.putInt("buddie_limit", 15);
@@ -90,16 +92,16 @@ public class BluetoothService extends Service {
     private void onMessageReceived(String message) {
         // We received a message! Handle it here.
         Toast.makeText(getApplicationContext(), "Received a message! Message was: " + message, Toast.LENGTH_LONG).show(); // Replace context with your context instance.
-        String command = message.split(' ')[0];
+        String command = message.split(" ")[0];
         switch(command){
             case "SMOKED":
-                int numCigsSmoked = Integer.parseInt(message.split(' ')[1]);
+                int numCigsSmoked = Integer.parseInt(message.split(" ")[1]);
                 editor.putInt("my_cigs_smoked", numCigsSmoked);
                 break;
 
             case "BUDDIE_SMOKED":
-                int numCigsSmoked = Integer.parseInt(message.split(' ')[1]);
-                editor.putInt("buddie_cigs_smoked", numCigsSmoked);
+                int numBuddyCigsSmoked = Integer.parseInt(message.split(" ")[1]);
+                editor.putInt("buddie_cigs_smoked", numBuddyCigsSmoked);
                 break;
         }
         
