@@ -22,25 +22,23 @@ public class MenuWeekActivity extends AppCompatActivity {
         barChart = (BarChart) findViewById(R.id.barChart);
         ArrayList<Integer> barEntries = new ArrayList<>();
         //this array is where we need to put values from arduino and start creating the barChart
-        setContentView(R.layout.menu_page2_week);
-        System.out.println("set content view");
-        Button month = (Button) findViewById(R.id.monthButton);
-        System.out.println(month);
-        month.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MenuMonthActivity.class);
-                System.out.println(intent);
-                startActivity(intent);
-            }
-        });
-
+        //setContentView(R.layout.menu_page2_week);
 
         Button year = (Button) findViewById(R.id.yearButton);
         year.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MenuYearActivity.class);
+                System.out.println(intent);
+                startActivity(intent);
+            }
+        });
+
+        Button month = (Button) findViewById(R.id.monthButton);
+        month.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MenuMonthActivity.class);
                 System.out.println(intent);
                 startActivity(intent);
             }

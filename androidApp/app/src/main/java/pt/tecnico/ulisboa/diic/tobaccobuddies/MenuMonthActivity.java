@@ -25,7 +25,6 @@ public class MenuMonthActivity extends AppCompatActivity {
         //this array is where we need to put values from arduino and start creating the barChart
 
         setContentView(R.layout.menu_page2_month);
-        System.out.println("set content view");
         Button year = (Button) findViewById(R.id.yearButton);
         year.setOnClickListener(new View.OnClickListener() {
             @Override
