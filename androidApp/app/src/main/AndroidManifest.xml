@@ -9,8 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EmptyActivity"></activity>
+        <activity android:name=".EmptyActivity"/>
         <activity android:name=".EPuppyActivity" />
+        <activity android:name=".MenuWeekActivity" />
+        <activity android:name=".MenuMonthActivity" />
+        <activity android:name=".MenuYearActivity" />
         <activity android:name=".BuddyPageActivity" />
         <activity android:name=".NotificationsActivity" />
         <activity android:name=".MainActivity">

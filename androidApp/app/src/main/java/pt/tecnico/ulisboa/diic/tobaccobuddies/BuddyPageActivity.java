@@ -13,7 +13,7 @@ public class BuddyPageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buddy_page3_2);
+        setContentView(R.layout.menu_page2_month);
 
         // Code for Settings button
         ImageButton settingsButton = findViewById(R.id.settingsButton);
