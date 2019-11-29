@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.github.mikephil.charting.charts.BarChart;
 
@@ -37,6 +38,27 @@ public class MenuYearActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MenuWeekActivity.class);
+                System.out.println(intent);
+                startActivity(intent);
+            }
+        });
+
+
+        ImageView left = findViewById(R.id.swipe_left);
+        left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), BuddyPageActivity.class);
+                System.out.println(intent);
+                startActivity(intent);
+            }
+        });
+
+        ImageView right = findViewById(R.id.swipe_right);
+        right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 System.out.println(intent);
                 startActivity(intent);
             }
