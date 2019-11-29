@@ -52,7 +52,9 @@ bool flagLEDBlink_awtConn = false;
 /* --- FUNCTIONALITY VARIABLES --- */
 
 int cigarettesSmoked = 0;
-int limit = 10;
+int limit = -1;
+int buddieCigarettesSmoked = 0;
+int buddieLimit = -1;
 
 /* --- SETUP & SETUP_AUX METHODS --- */
 
@@ -84,13 +86,19 @@ void setup() {
 void loop() {
 
   distance = sonar.ping_cm();
-  Serial.print(distance); Serial.println(" cm");
+
+  if (distance != 0 && distance <= 10) {
+    incrementCigsSmoked();
+  }
 
   currIncrButtState = digitalRead(INCR_BUTTON);
   if (currIncrButtState != lastIncrButtState) {
     updateIncrButtonState();
-    if (currIncrButtState == HIGH) {
+    if (currIncrButtState == HIGH && incrTimeHold <= LONG_PRESS) {
       incrementCigsSmoked();
+    }
+    if (currIncrButtState == HIGH && incrTimeHold >= LONG_PRESS) {
+      decrementCigsSmoked();
     }
   }
   else
@@ -99,8 +107,11 @@ void loop() {
   currDecrButtState = digitalRead(DECR_BUTTON);
   if (currDecrButtState != lastDecrButtState) {
     updateDecrButtonState();
-    if (currDecrButtState == HIGH) {
-      decrementCigsSmoked();
+    if (currDecrButtState == HIGH && decrTimeHold <= LONG_PRESS) {
+      decrementBuddiesCigsSmoked();
+    }
+    if (currDecrButtState == HIGH && decrTimeHold >= LONG_PRESS) {
+      decrementBuddiesCigsSmoked();
     }
   }
   else
@@ -215,6 +226,20 @@ void decrementCigsSmoked() {
     Serial.print("Number of Cigarettes Smoked: "); Serial.println(cigarettesSmoked);
     esp32BT.print("SMOKED "); esp32BT.println(cigarettesSmoked);
     ledBlink(2, 0.5, 0, 255, 0);
+  }
+}
+
+void incrementBuddiesCigsSmoked() {
+  buddieCigarettesSmoked++;
+  Serial.print("Buddie's Number of Cigarettes Smoked: "); Serial.println(buddieCigarettesSmoked);
+  esp32BT.print("BUDDIE_SMOKED "); esp32BT.println(buddieCigarettesSmoked);
+}
+
+void decrementBuddiesCigsSmoked() {
+  if (buddieCigarettesSmoked > 0) {
+    buddieCigarettesSmoked--;
+    Serial.print("Buddie's Number of Cigarettes Smoked: "); Serial.println(buddieCigarettesSmoked);
+    esp32BT.print("BUDDIE_SMOKED "); esp32BT.println(buddieCigarettesSmoked);
   }
 }
 
