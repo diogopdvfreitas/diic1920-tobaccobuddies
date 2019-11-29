@@ -8,15 +8,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class BuddyPageActivity extends AppCompatActivity {
+public class BuddyPage2Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buddy_page1);
+        setContentView(R.layout.menu_page2_week);
 
         // Code for Settings button
-        ImageButton settingsButton = findViewById(R.id.settingsButton2);
+        ImageButton settingsButton = findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -27,7 +27,7 @@ public class BuddyPageActivity extends AppCompatActivity {
         });
 
         // Code for E-Puppy button
-        ImageButton ePuppyButton = findViewById(R.id.epuppyButton2);
+        ImageButton ePuppyButton = findViewById(R.id.epuppyButton);
         ePuppyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,15 +38,27 @@ public class BuddyPageActivity extends AppCompatActivity {
         });
 
         // Code for swipe right button
-        ImageButton swipeRightButton = findViewById(R.id.swipe_right);
+        /* ImageButton swipeRightButton = findViewById(R.id.swipe_right);
         swipeRightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // start the correspondent Activity
-                Intent intent = new Intent(getApplicationContext(), MenuWeekActivity.class);
+                Intent intent = new Intent(getApplicationContext(), BuddyPage3Activity.class);
+                startActivity(intent);
+            }
+        }); */
+
+        // Code for swipe left button
+        ImageButton swipeLeftButton = findViewById(R.id.swipe_left);
+        swipeLeftButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // start the correspondent Activity
+                Intent intent = new Intent(getApplicationContext(), BuddyPageActivity.class);
                 startActivity(intent);
             }
         });
 
     }
 }
+
