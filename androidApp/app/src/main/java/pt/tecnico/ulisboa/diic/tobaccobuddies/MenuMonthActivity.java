@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -48,7 +49,7 @@ public class MenuMonthActivity extends AppCompatActivity {
         });
 
 
-        ImageView left = findViewById(R.id.swipe_left);
+        ImageButton left = findViewById(R.id.swipe_left);
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,11 +59,11 @@ public class MenuMonthActivity extends AppCompatActivity {
             }
         });
 
-        ImageView right = findViewById(R.id.swipe_right);
+        ImageButton right = findViewById(R.id.swipe_right);
         right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), BuddyMonthActivity.class);
                 System.out.println(intent);
                 startActivity(intent);
             }
