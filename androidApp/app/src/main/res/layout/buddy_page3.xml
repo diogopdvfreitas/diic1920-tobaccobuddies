@@ -14,10 +14,9 @@
         android:layout_height="50dp"
         android:layout_marginStart="60dp"
         android:layout_marginLeft="60dp"
-        android:layout_marginTop="80dp"
+        android:background="@drawable/left_arrow_2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout5"
-        android:background="@drawable/left_arrow_2" />
+        tools:layout_editor_absoluteY="691dp" />
 
     <TextView
         android:id="@+id/epuppy_background"
@@ -79,65 +78,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/epuppyButton" />
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout5"
-        android:layout_width="317dp"
-        android:layout_height="376dp"
-        android:layout_margin="50dp"
-        android:layout_marginTop="44dp"
-        android:background="#00726D6D"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp"
-        android:paddingRight="16dp"
-        android:paddingBottom="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentMonth"
-        tools:context="Android.in.barchart.MainActivity">
-
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/barChart"
-            android:layout_width="266dp"
-            android:layout_height="340dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp" />
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/weekButton"
+    <ImageView
+        android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="10dp"
-        android:text="Month"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout5" />
-
-    <Button
-        android:id="@+id/yearButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        android:text="Year"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout5" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Buddy Page"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="670dp" />
+        app:srcCompat="@drawable/line_buddy"
+        tools:layout_editor_absoluteX="-8dp"
+        tools:layout_editor_absoluteY="158dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
