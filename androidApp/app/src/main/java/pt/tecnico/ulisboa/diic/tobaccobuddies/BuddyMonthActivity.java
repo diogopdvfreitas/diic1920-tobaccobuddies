@@ -21,7 +21,7 @@ public class BuddyMonthActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // start a NotificationsActivity
-                Intent intent = new Intent(getApplicationContext(), NotificationsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
                 startActivity(intent);
             }
         });
