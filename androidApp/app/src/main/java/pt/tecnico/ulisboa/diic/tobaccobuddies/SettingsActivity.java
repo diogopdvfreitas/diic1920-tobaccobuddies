@@ -19,7 +19,7 @@ public class SettingsActivity extends AppCompatActivity {
 
 
         // Code for Close (X) button
-        Button closeButton = findViewById(R.id.closeButton);
+        Button closeButton = findViewById(R.id.close_button);
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
