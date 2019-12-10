@@ -38,7 +38,7 @@ public class BuddyPageActivity extends AppCompatActivity {
         });
 
         // Code for swipe right button
-        ImageButton swipeRightButton = findViewById(R.id.swipe_right);
+        ImageButton swipeRightButton = findViewById(R.id.swipe_right_buddy_page1);
         swipeRightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

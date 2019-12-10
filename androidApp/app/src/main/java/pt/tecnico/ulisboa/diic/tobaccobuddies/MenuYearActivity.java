@@ -45,7 +45,7 @@ public class MenuYearActivity extends AppCompatActivity {
         });
 
 
-        ImageButton left = findViewById(R.id.swipe_left);
+        ImageButton left = findViewById(R.id.swipe_left_page2);
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,7 +54,7 @@ public class MenuYearActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton right = findViewById(R.id.swipe_right);
+        ImageButton right = findViewById(R.id.swipe_right_page2);
         right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

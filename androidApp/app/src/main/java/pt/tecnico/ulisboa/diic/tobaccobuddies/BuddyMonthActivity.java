@@ -13,7 +13,7 @@ public class BuddyMonthActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buddy_page3_2);
+        setContentView(R.layout.buddy_page3);
 
         // Code for Settings button
         ImageButton settingsButton = findViewById(R.id.settingsButton);
@@ -38,7 +38,7 @@ public class BuddyMonthActivity extends AppCompatActivity {
         });
 
         // Code for swipe left button
-        ImageButton swipeLeftButton = findViewById(R.id.swipe_left);
+        ImageButton swipeLeftButton = findViewById(R.id.swipe_left_buddy_page3);
         swipeLeftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

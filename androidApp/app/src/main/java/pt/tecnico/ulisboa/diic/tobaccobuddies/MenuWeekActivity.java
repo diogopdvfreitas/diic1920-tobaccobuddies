@@ -69,7 +69,7 @@ public class MenuWeekActivity extends AppCompatActivity {
         });
 
         //this swipe works
-        ImageButton swipeLeftButton = findViewById(R.id.swipe_left);
+        ImageButton swipeLeftButton = findViewById(R.id.swipe_left_page2);
         swipeLeftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +80,7 @@ public class MenuWeekActivity extends AppCompatActivity {
         });
 
         // Code for swipe right button
-        ImageButton swipeRightButton = findViewById(R.id.swipe_right);
+        ImageButton swipeRightButton = findViewById(R.id.swipe_right_page2);
         swipeRightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -10,7 +10,7 @@
     tools:context=".MainActivity">
 
     <ImageButton
-        android:id="@+id/swipe_right"
+        android:id="@+id/swipe_right_page2"
         android:layout_width="60dp"
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toBottomOf="@+id/yearButton" />
 
     <ImageButton
-        android:id="@+id/swipe_left"
+        android:id="@+id/swipe_left_page2"
         android:layout_width="60dp"
         android:layout_height="50dp"
         android:layout_marginStart="60dp"
