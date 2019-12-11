@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EmptyActivity"/>
+        <activity android:name=".BuddyAddedActivity"></activity>
+        <activity android:name=".RemoveBuddyActivity" />
+        <activity android:name=".AddBuddyActivity" />
+        <activity android:name=".BuddyActivity" />
+        <activity android:name=".LimitsActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".EmptyActivity" />
         <activity android:name=".EPuppyActivity" />
         <activity android:name=".MenuWeekActivity" />
         <activity android:name=".MenuMonthActivity" />
