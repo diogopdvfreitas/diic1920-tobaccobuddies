@@ -23,9 +23,12 @@ public class SettingsActivity extends AppCompatActivity {
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                // start an EPuppyActivity
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
+        ;
 
         // Code for E-Puppy button
         ImageView notificationsButton = findViewById(R.id.notifications_icon);
