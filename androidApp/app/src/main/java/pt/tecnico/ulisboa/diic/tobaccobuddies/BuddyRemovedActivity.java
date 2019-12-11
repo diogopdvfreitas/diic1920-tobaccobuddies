@@ -7,12 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class BuddyAddedActivity extends AppCompatActivity {
+public class BuddyRemovedActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buddy_added);
+        setContentView(R.layout.buddy_removed);
 
         Button buddyAddedButton = findViewById(R.id.buddyRemovedButton);
         buddyAddedButton.setOnClickListener(new View.OnClickListener() {
@@ -23,6 +24,5 @@ public class BuddyAddedActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 }

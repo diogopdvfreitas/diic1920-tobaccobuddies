@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -25,5 +26,15 @@ public class AddBuddyActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // Code for Close (X) button
+        Button close = findViewById(R.id.close_button3);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
 }
