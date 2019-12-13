@@ -79,12 +79,10 @@ public class MenuWeekActivity extends AppCompatActivity {
             }
         });
 
-        // Code for swipe right button
-        ImageButton swipeRightButton = findViewById(R.id.swipe_right);
-        swipeRightButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton swipeRight = findViewById(R.id.swipe_right);
+        swipeRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // start the correspondent Activity
                 Intent intent = new Intent(getApplicationContext(), BuddyMonthActivity.class);
                 System.out.println(intent);
                 startActivity(intent);

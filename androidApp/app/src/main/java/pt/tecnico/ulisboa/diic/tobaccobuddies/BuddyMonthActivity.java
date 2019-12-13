@@ -2,18 +2,20 @@ package pt.tecnico.ulisboa.diic.tobaccobuddies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+
 public class BuddyMonthActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buddy_page3_2);
+        setContentView(R.layout.buddy_page3);
 
         // Code for Settings button
         ImageButton settingsButton = findViewById(R.id.settingsButton);
