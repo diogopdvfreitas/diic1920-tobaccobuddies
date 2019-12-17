@@ -2,7 +2,9 @@ package pt.tecnico.ulisboa.diic.tobaccobuddies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
@@ -16,7 +18,8 @@ public class BuddyActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_buddy);
-
+        final SharedPreferences sharedPreferences = getSharedPreferences("editor", 0);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
 
         // Code for Close (X) button
         Button closeButton = findViewById(R.id.close_button2);
@@ -29,14 +32,26 @@ public class BuddyActivity extends AppCompatActivity {
             }
         });
 
+        //Verification if the user has already a buddy
+        boolean aux = sharedPreferences.getBoolean("tag", false);
+        final boolean[] hasBuddy = {aux};
+        editor.putBoolean(String.valueOf(sharedPreferences), aux).apply();
 
         ImageView addBuddyButton = findViewById(R.id.add_buddy);
         addBuddyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // start an EPuppyActivity
-                Intent intent = new Intent(getApplicationContext(), AddBuddyActivity.class);
-                startActivity(intent);
+                if(!(hasBuddy[0])){
+                    Intent intent = new Intent(getApplicationContext(), AddBuddyActivity.class);
+                    hasBuddy[0] = true;
+                    editor.putBoolean("tag", hasBuddy[0]).commit();
+                    startActivity(intent);
+                }
+                else{
+                    //criar new activity with a popup saying the user has already a buddy
+                    Intent intent = new Intent(getApplicationContext(), BuddyAlreadyExistisActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -45,9 +60,17 @@ public class BuddyActivity extends AppCompatActivity {
         removeBuddyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // start an EPuppyActivity
-                Intent intent = new Intent(getApplicationContext(), RemoveBuddyActivity.class);
-                startActivity(intent);
+                if((hasBuddy[0])){
+                    Intent intent = new Intent(getApplicationContext(), RemoveBuddyActivity.class);
+                    hasBuddy[0] = false;
+                    editor.putBoolean("tag", hasBuddy[0]).commit();
+                    startActivity(intent);
+                }
+                else{
+                    //criar new activity with a popup saying the user has already a buddy
+                    Intent intent = new Intent(getApplicationContext(), BuddyAlreadyExistisActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
