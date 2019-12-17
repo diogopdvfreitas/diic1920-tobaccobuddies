@@ -4,7 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.ViewFlipper;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,8 +20,17 @@ public class MainActivity extends AppCompatActivity {
         checkDefaultSettings();
 
         // DEBUG used to launch activities to test
-        Intent intent = new Intent(this, BuddyPageActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, BuddyPageActivity.class);
+        //startActivity(intent);
+
+        ImageView cigarettes = findViewById(R.id.you_pack);
+        cigarettes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HalfLimitReachedActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -47,8 +57,10 @@ public class MainActivity extends AppCompatActivity {
         if(!sharedPreferences.contains("progress")){
             editor.putBoolean("progress",true);
         }
-        editor.commit();
+        editor.apply();
     }
+
+
 
 
 

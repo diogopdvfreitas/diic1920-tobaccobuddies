@@ -28,7 +28,6 @@ public class SettingsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        ;
 
         // Code for E-Puppy button
         ImageView notificationsButton = findViewById(R.id.notifications_icon);
