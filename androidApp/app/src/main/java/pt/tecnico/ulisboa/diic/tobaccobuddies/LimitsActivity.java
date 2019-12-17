@@ -2,6 +2,7 @@ package pt.tecnico.ulisboa.diic.tobaccobuddies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -24,15 +25,21 @@ public class LimitsActivity extends AppCompatActivity {
         // Open shared preferences (Settings) and an editor to change them
         final SharedPreferences sharedPreferences = getSharedPreferences(getResources().getString(R.string.my_preferences), Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
+        final SharedPreferences mPrefs = getSharedPreferences("limits", 0);
 
         final int[] count = {0};
         final TextView limits  = findViewById(R.id.textView5);
-        limits.setText(String.valueOf(count[0]));
+
+        String limitsValue = mPrefs.getString("tag", String.valueOf(0));
+        limits.setText(limitsValue);
+
         ImageView arrowUp = findViewById(R.id.arrow_up);
         arrowUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 count[0]++;
+                SharedPreferences.Editor mEditor = mPrefs.edit();
+                mEditor.putString("tag", String.valueOf(count[0])).commit();
                 limits.setText(String.valueOf(count[0]));
             }});
 
@@ -40,8 +47,12 @@ public class LimitsActivity extends AppCompatActivity {
         arrowDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                count[0]--;
-                limits.setText(String.valueOf(count[0]));
+                if (count[0] > 0) {
+                    count[0]--;
+                    SharedPreferences.Editor mEditor = mPrefs.edit();
+                    mEditor.putString("tag", String.valueOf(count[0])).commit();
+                    limits.setText(String.valueOf(count[0]));
+                }
             }});
 
         // Code for Close (X) button
