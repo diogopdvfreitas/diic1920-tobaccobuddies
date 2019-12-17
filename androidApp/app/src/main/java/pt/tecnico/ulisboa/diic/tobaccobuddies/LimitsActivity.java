@@ -26,19 +26,19 @@ public class LimitsActivity extends AppCompatActivity {
         final SharedPreferences sharedPreferences = getSharedPreferences(getResources().getString(R.string.my_preferences), Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
         final SharedPreferences mPrefs = getSharedPreferences("limits", 0);
+        final SharedPreferences.Editor mEditor = mPrefs.edit();
 
-        final int[] count = {0};
         final TextView limits  = findViewById(R.id.textView5);
 
         String limitsValue = mPrefs.getString("tag", String.valueOf(0));
         limits.setText(limitsValue);
+        final int[] count = {Integer.valueOf(limitsValue)};
 
         ImageView arrowUp = findViewById(R.id.arrow_up);
         arrowUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 count[0]++;
-                SharedPreferences.Editor mEditor = mPrefs.edit();
                 mEditor.putString("tag", String.valueOf(count[0])).commit();
                 limits.setText(String.valueOf(count[0]));
             }});
@@ -49,11 +49,11 @@ public class LimitsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (count[0] > 0) {
                     count[0]--;
-                    SharedPreferences.Editor mEditor = mPrefs.edit();
                     mEditor.putString("tag", String.valueOf(count[0])).commit();
                     limits.setText(String.valueOf(count[0]));
                 }
             }});
+
 
         // Code for Close (X) button
         Button closeButton = findViewById(R.id.close_button);
