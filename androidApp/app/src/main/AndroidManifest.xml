@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BuddyAlreadyExistisActivity"></activity>
+        <activity android:name=".BuddyNonexistentActivity"></activity>
+        <activity android:name=".BuddyAlreadyExistisActivity" />
         <activity android:name=".HalfLimitReachedActivity" />
         <activity android:name=".BuddyRemovedActivity" />
         <activity android:name=".BuddyAddedActivity" />

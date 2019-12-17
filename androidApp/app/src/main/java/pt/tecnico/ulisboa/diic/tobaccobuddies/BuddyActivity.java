@@ -68,7 +68,7 @@ public class BuddyActivity extends AppCompatActivity {
                 }
                 else{
                     //criar new activity with a popup saying the user has already a buddy
-                    Intent intent = new Intent(getApplicationContext(), BuddyAlreadyExistisActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), BuddyNonexistentActivity.class);
                     startActivity(intent);
                 }
             }
