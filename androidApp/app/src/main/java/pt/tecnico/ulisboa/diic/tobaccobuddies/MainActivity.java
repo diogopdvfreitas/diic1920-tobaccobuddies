@@ -19,10 +19,6 @@ public class MainActivity extends AppCompatActivity {
         //Open shared preferences (Settings) to check if the values exist
         checkDefaultSettings();
 
-        // DEBUG used to launch activities to test
-        //Intent intent = new Intent(this, BuddyPageActivity.class);
-        //startActivity(intent);
-
         ImageView cigarettes = findViewById(R.id.you_pack);
         cigarettes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // DEBUG used to launch activities to test
+        Intent intent = new Intent(this, BuddyPageActivity.class);
+        startActivity(intent);
+
 
     }
 
@@ -56,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         }
         if(!sharedPreferences.contains("progress")){
             editor.putBoolean("progress",true);
+        }
+        if(!sharedPreferences.contains("notifyBuddy")){
+            editor.putBoolean("notifyBuddy", true);
         }
         editor.apply();
     }
