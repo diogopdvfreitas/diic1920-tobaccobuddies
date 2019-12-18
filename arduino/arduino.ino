@@ -20,6 +20,10 @@ const uint8_t R_LED = 1;
 const uint8_t G_LED = 2;
 const uint8_t B_LED = 3;
 
+const uint8_t LEDSTRIP_R_PIN = 14;
+const uint8_t LEDSTRIP_G_PIN = 12;
+const uint8_t LEDSTRIP_B_PIN = 13;
+
 const char MESSAGE_START_CHAR = '<';
 const char MESSAGE_ENDED_CHAR = '>';
 
@@ -84,6 +88,12 @@ void setup() {
   ledcAttachPin(G_PIN, G_LED);
   ledcAttachPin(B_PIN, B_LED);
 
+  digitalWrite(LEDSTRIP_R_PIN, HIGH);
+  digitalWrite(LEDSTRIP_G_PIN, HIGH);
+  digitalWrite(LEDSTRIP_B_PIN, HIGH);
+
+  pixels.begin();
+
   setColorBasedOnSmoked();
 }    
 
@@ -128,7 +138,7 @@ void loop() {
   }
 
   btReceiveMessage();
-  setColorBasedOnSmoked();
+  //setColorBasedOnSmoked();
   lastIncrButtState = currIncrButtState;
   lastDecrButtState = currDecrButtState;
 }
@@ -223,6 +233,7 @@ void incrementCigsSmoked() {
     ledBlink(2, 0.5, 255, 0, 0);
   else
     ledBlink(5, 0.25, 255, 0, 0);
+  setColorBasedOnSmoked();
 }
 
 void decrementCigsSmoked() {
@@ -231,6 +242,7 @@ void decrementCigsSmoked() {
     Serial.print("Number of Cigarettes Smoked: "); Serial.println(cigarettesSmoked);
     esp32BT.print("SMOKED "); esp32BT.println(cigarettesSmoked);
     ledBlink(2, 0.5, 0, 255, 0);
+    setColorBasedOnSmoked();
   }
 }
 
@@ -264,33 +276,37 @@ void setColorBasedOnSmoked() {
     if (green < 0) green = 0;
     if (green > 255) green = 255;
   }
+  setColor(red, green, 0);
+
+  //red = red * 0.1;
+  //green = green * 0.;
+  uint32_t color = pixels.Color(red , green, 0);
   
   if (percentage * 100 > 0) {
-    pixels.setPixelColor(1, pixels.Color(red, green, 0));
+   pixels.setPixelColor(0, color);
   }
   if (percentage * 100 > 12.5) {
-    pixels.setPixelColor(2, pixels.Color(red, green, 0));
+    pixels.setPixelColor(1, color);
   }
   if (percentage * 100 > 25) {
-    pixels.setPixelColor(3, pixels.Color(red, green, 0));
+    pixels.setPixelColor(2, color);
   }
   if (percentage * 100 > 37.5) {
-    pixels.setPixelColor(4, pixels.Color(red, green, 0));
+    pixels.setPixelColor(3, color);
   }
   if (percentage * 100 > 50) {
-    pixels.setPixelColor(5, pixels.Color(red, green, 0));
+    pixels.setPixelColor(4, color);
   }
   if (percentage * 100 > 62.5) {
-    pixels.setPixelColor(6, pixels.Color(red, green, 0));
+    pixels.setPixelColor(5, color);
   }
   if (percentage * 100 > 75) {
-    pixels.setPixelColor(7, pixels.Color(red, green, 0));
+    pixels.setPixelColor(6, color);
   }
-  if (percentage * 100 > 97.5) {
-    pixels.setPixelColor(8, pixels.Color(red, green, 0));
+  if (percentage * 100 > 87.5) {
+    pixels.setPixelColor(7, color);
   }
-
-  setColor(red, green, 0);
+  pixels.show();
 }
 
 void btReceiveMessage() {
