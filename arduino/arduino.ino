@@ -1,6 +1,7 @@
 #include <math.h>
 #include <NewPing.h>
 #include <BluetoothSerial.h>
+#include <Adafruit_NeoPixel.h>
 
 /* --- GLOBAL VARIABLES --- */
 
@@ -9,6 +10,8 @@ const int DECR_BUTTON = 22;
 
 const uint8_t SENSE_ECHOPIN = 27;
 const uint8_t SENSE_TRIGPIN = 26;
+
+const uint8_t NEOPIXEL_PIN = 5;
 
 const uint8_t R_PIN = 18;
 const uint8_t G_PIN = 19;
@@ -28,16 +31,17 @@ char messageReceived[100];
 
 const int LONG_PRESS = 3000;
 const int MAX_DISTANCE = 50;
+const int N_PIXELS = 8;
 
 int currIncrButtState = 0;                // Button's current state
-int lastIncrButtState = 1;                // Button's state in the last loop
+int lastIncrButtState = 0;                // Button's state in the last loop
 int incrTimeStartPressed = 0;             // Time the button was pressed
 int incrTimeEndPressed = 0;               // Time the button was released
 int incrTimeHold = 0;                     // How long the button was held
 int incrTimeReleased = 0;                 // How long the button released
 
 int currDecrButtState = 0;                // Button's current state
-int lastDecrButtState = 1;                // Button's state in the last loop
+int lastDecrButtState = 0;                // Button's state in the last loop
 int decrTimeStartPressed = 0;             // Time the button was pressed
 int decrTimeEndPressed = 0;               // Time the button was released
 int decrTimeHold = 0;                     // How long the button was held
@@ -46,15 +50,17 @@ int decrTimeReleased = 0;                 // How long the button released
 NewPing sonar(SENSE_TRIGPIN, SENSE_ECHOPIN);
 double distance;
 
+Adafruit_NeoPixel pixels(N_PIXELS, NEOPIXEL_PIN, NEO_GRB + NEO_KHZ800);
+
 int timeLedChange = 0;
 bool flagLEDBlink_awtConn = false;
 
 /* --- FUNCTIONALITY VARIABLES --- */
 
 int cigarettesSmoked = 0;
-int limit = -1;
+int limit = 10;
 int buddieCigarettesSmoked = 0;
-int buddieLimit = -1;
+int buddieLimit = 15;
 
 /* --- SETUP & SETUP_AUX METHODS --- */
 
@@ -86,7 +92,6 @@ void setup() {
 void loop() {
 
   distance = sonar.ping_cm();
-
   if (distance != 0 && distance <= 10) {
     incrementCigsSmoked();
   }
@@ -94,10 +99,10 @@ void loop() {
   currIncrButtState = digitalRead(INCR_BUTTON);
   if (currIncrButtState != lastIncrButtState) {
     updateIncrButtonState();
-    if (currIncrButtState == HIGH && incrTimeHold <= LONG_PRESS) {
+    if (currIncrButtState == LOW && incrTimeHold <= LONG_PRESS) {
       incrementCigsSmoked();
     }
-    if (currIncrButtState == HIGH && incrTimeHold >= LONG_PRESS) {
+    if (currIncrButtState == LOW && incrTimeHold >= LONG_PRESS) {
       decrementCigsSmoked();
     }
   }
@@ -107,10 +112,10 @@ void loop() {
   currDecrButtState = digitalRead(DECR_BUTTON);
   if (currDecrButtState != lastDecrButtState) {
     updateDecrButtonState();
-    if (currDecrButtState == HIGH && decrTimeHold <= LONG_PRESS) {
-      decrementBuddiesCigsSmoked();
+    if (currDecrButtState == LOW && decrTimeHold <= LONG_PRESS) {
+      incrementBuddiesCigsSmoked();
     }
-    if (currDecrButtState == HIGH && decrTimeHold >= LONG_PRESS) {
+    if (currDecrButtState == LOW && decrTimeHold >= LONG_PRESS) {
       decrementBuddiesCigsSmoked();
     }
   }
@@ -131,7 +136,7 @@ void loop() {
 void updateIncrButtonState() {
   /*  HIGH == Button Pressed 
       LOW == Button Released */
-  if(currIncrButtState == HIGH) {
+  if(currIncrButtState == LOW) {
     incrTimeStartPressed = millis();                                // Registers the time the button was pressed
     incrTimeReleased = incrTimeStartPressed - incrTimeEndPressed;   // Registers how long the button was released
   }
@@ -142,7 +147,7 @@ void updateIncrButtonState() {
 }
 
 void updateIncrButtonCounter() {
-  if(currIncrButtState == HIGH)
+  if(currIncrButtState == LOW)
     incrTimeHold = millis() - incrTimeStartPressed;                 // Registers for how long the button has been pressed currently
   else
     incrTimeReleased = millis() - incrTimeEndPressed;               // Registers for how long the button has been released currently
@@ -151,7 +156,7 @@ void updateIncrButtonCounter() {
 void updateDecrButtonState() {
   /*  HIGH == Button Pressed 
       LOW == Button Released */
-  if(currDecrButtState == HIGH) {
+  if(currDecrButtState == LOW) {
     decrTimeStartPressed = millis();                                // Registers the time the button was pressed
     decrTimeReleased = decrTimeStartPressed - decrTimeEndPressed;   // Registers how long the button was released
   }
@@ -162,7 +167,7 @@ void updateDecrButtonState() {
 }
 
 void updateDecrButtonCounter() {
-  if(currDecrButtState == HIGH)
+  if(currDecrButtState == LOW)
     decrTimeHold = millis() - decrTimeStartPressed;                 // Registers for how long the button has been pressed currently
   else
     decrTimeReleased = millis() - decrTimeEndPressed;               // Registers for how long the button has been released currently
@@ -259,6 +264,32 @@ void setColorBasedOnSmoked() {
     if (green < 0) green = 0;
     if (green > 255) green = 255;
   }
+  
+  if (percentage * 100 > 0) {
+    pixels.setPixelColor(1, pixels.Color(red, green, 0));
+  }
+  if (percentage * 100 > 12.5) {
+    pixels.setPixelColor(2, pixels.Color(red, green, 0));
+  }
+  if (percentage * 100 > 25) {
+    pixels.setPixelColor(3, pixels.Color(red, green, 0));
+  }
+  if (percentage * 100 > 37.5) {
+    pixels.setPixelColor(4, pixels.Color(red, green, 0));
+  }
+  if (percentage * 100 > 50) {
+    pixels.setPixelColor(5, pixels.Color(red, green, 0));
+  }
+  if (percentage * 100 > 62.5) {
+    pixels.setPixelColor(6, pixels.Color(red, green, 0));
+  }
+  if (percentage * 100 > 75) {
+    pixels.setPixelColor(7, pixels.Color(red, green, 0));
+  }
+  if (percentage * 100 > 97.5) {
+    pixels.setPixelColor(8, pixels.Color(red, green, 0));
+  }
+
   setColor(red, green, 0);
 }
 
