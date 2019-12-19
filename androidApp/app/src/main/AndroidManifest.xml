@@ -14,11 +14,21 @@
             android:enabled="true"
             android:exported="true"></service>
 
+        <activity android:name=".BuddyLimitReachedActivity"></activity>
+        <activity android:name=".BuddyHalfLimitReachedActivity" />
+        <activity android:name=".LimitsReachedActivity" />
+        <activity android:name=".BuddyNonexistentActivity" />
+        <activity android:name=".BuddyAlreadyExistisActivity" />
+        <activity android:name=".HalfLimitReachedActivity" />
+        <activity android:name=".BuddyRemovedActivity" />
+        <activity android:name=".BuddyAddedActivity" />
+        <activity android:name=".RemoveBuddyActivity" />
+        <activity android:name=".AddBuddyActivity" />
+        <activity android:name=".BuddyActivity" />
+        <activity android:name=".LimitsActivity" />
+        <activity android:name=".SettingsActivity" />
         <activity android:name=".EmptyActivity" />
-        <activity android:name=".EPuppyActivity" />
         <activity android:name=".MenuWeekActivity" />
-        <activity android:name=".MenuMonthActivity" />
-        <activity android:name=".MenuYearActivity" />
         <activity android:name=".BuddyPageActivity" />
         <activity android:name=".NotificationsActivity" />
         <activity android:name=".MainActivity">
@@ -28,6 +38,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".BuddyMonthActivity" />
     </application>
 
 </manifest>

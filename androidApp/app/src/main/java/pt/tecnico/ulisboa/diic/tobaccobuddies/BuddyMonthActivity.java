@@ -2,18 +2,23 @@ package pt.tecnico.ulisboa.diic.tobaccobuddies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+
 public class BuddyMonthActivity extends AppCompatActivity {
+
+    float x1, x2, y1, y2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buddy_page1);
+        setContentView(R.layout.buddy_page3);
 
         // Code for Settings button
         ImageButton settingsButton = findViewById(R.id.settingsButton);
@@ -21,32 +26,29 @@ public class BuddyMonthActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // start a NotificationsActivity
-                Intent intent = new Intent(getApplicationContext(), NotificationsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
                 startActivity(intent);
             }
         });
+        
 
-        // Code for E-Puppy button
-        ImageButton ePuppyButton = findViewById(R.id.epuppyButton);
-        ePuppyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // start an EPuppyActivity
-                Intent intent = new Intent(getApplicationContext(), EPuppyActivity.class);
-                startActivity(intent);
-            }
-        });
+    }
 
-        // Code for swipe left button
-        ImageButton swipeLeftButton = findViewById(R.id.swipe_left);
-        swipeLeftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // start the correspondent Activity
-                Intent intent = new Intent(getApplicationContext(), MenuWeekActivity.class);
-                startActivity(intent);
-            }
-        });
-
+    public boolean onTouchEvent(MotionEvent touchEvent){
+        switch(touchEvent.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                x1 = touchEvent.getX();
+                y1 = touchEvent.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2 = touchEvent.getX();
+                y2 = touchEvent.getY();
+                if(x1 < x2){
+                    Intent i = new Intent(BuddyMonthActivity.this, MenuWeekActivity.class);
+                    startActivity(i);
+                }
+                break;
+        }
+        return false;
     }
 }
