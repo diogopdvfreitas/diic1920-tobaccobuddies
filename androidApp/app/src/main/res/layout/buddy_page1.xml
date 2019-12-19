@@ -140,8 +140,8 @@
         android:layout_height="32dp"
         android:layout_marginStart="39dp"
         android:layout_marginLeft="39dp"
-        android:layout_marginBottom="35dp"
-        app:layout_constraintBottom_toTopOf="@+id/you_pack"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/you_cigarette1"
         app:layout_constraintStart_toStartOf="@+id/border_view"
         app:srcCompat="@drawable/cigarrete" />
 
@@ -151,8 +151,80 @@
         android:layout_height="32dp"
         android:layout_marginStart="39dp"
         android:layout_marginLeft="39dp"
-        android:layout_marginBottom="70dp"
-        app:layout_constraintBottom_toTopOf="@+id/you_pack"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/you_cigarette2"
+        app:layout_constraintStart_toStartOf="@+id/border_view"
+        app:srcCompat="@drawable/cigarrete" />
+
+    <ImageView
+        android:id="@+id/you_cigarette4"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginBottom="3dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/you_cigarette3"
+        app:layout_constraintStart_toStartOf="@+id/border_view"
+        app:srcCompat="@drawable/cigarrete" />
+
+    <ImageView
+        android:id="@+id/you_cigarette5"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginBottom="3dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/you_cigarette4"
+        app:layout_constraintStart_toStartOf="@+id/border_view"
+        app:srcCompat="@drawable/cigarrete" />
+
+    <ImageView
+        android:id="@+id/you_cigarette6"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginBottom="3dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/you_cigarette5"
+        app:layout_constraintStart_toStartOf="@+id/border_view"
+        app:srcCompat="@drawable/cigarrete" />
+
+    <ImageView
+        android:id="@+id/you_cigarette7"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginBottom="3dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/you_cigarette6"
+        app:layout_constraintStart_toStartOf="@+id/border_view"
+        app:srcCompat="@drawable/cigarrete" />
+
+    <ImageView
+        android:id="@+id/you_cigarette8"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginBottom="3dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/you_cigarette7"
+        app:layout_constraintStart_toStartOf="@+id/border_view"
+        app:srcCompat="@drawable/cigarrete" />
+
+    <ImageView
+        android:id="@+id/you_cigarette9"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginBottom="3dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/you_cigarette8"
         app:layout_constraintStart_toStartOf="@+id/border_view"
         app:srcCompat="@drawable/cigarrete" />
 
@@ -166,6 +238,133 @@
         android:layout_marginRight="16dp"
         app:layout_constraintBottom_toTopOf="@+id/buddy_pack"
         app:layout_constraintEnd_toEndOf="@+id/border_view"
+        app:layout_constraintStart_toEndOf="@+id/you_cigarette1"
+        app:srcCompat="@drawable/cigarrete" />
+
+    <ImageView
+        android:id="@+id/buddy_cigarette2"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/buddy_cigarette1"
+        app:layout_constraintEnd_toEndOf="@+id/border_view"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/you_cigarette1"
+        app:srcCompat="@drawable/cigarrete" />
+
+    <ImageView
+        android:id="@+id/buddy_cigarette3"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="3dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/buddy_cigarette2"
+        app:layout_constraintEnd_toEndOf="@+id/border_view"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/you_cigarette1"
+        app:srcCompat="@drawable/cigarrete" />
+
+    <ImageView
+        android:id="@+id/buddy_cigarette4"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="3dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/buddy_cigarette3"
+        app:layout_constraintEnd_toEndOf="@+id/border_view"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/you_cigarette1"
+        app:srcCompat="@drawable/cigarrete" />
+
+    <ImageView
+        android:id="@+id/buddy_cigarette5"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="3dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/buddy_cigarette4"
+        app:layout_constraintEnd_toEndOf="@+id/border_view"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/you_cigarette1"
+        app:srcCompat="@drawable/cigarrete" />
+
+    <ImageView
+        android:id="@+id/buddy_cigarette6"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="3dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/buddy_cigarette5"
+        app:layout_constraintEnd_toEndOf="@+id/border_view"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/you_cigarette1"
+        app:srcCompat="@drawable/cigarrete" />
+
+    <ImageView
+        android:id="@+id/buddy_cigarette7"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="3dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/buddy_cigarette6"
+        app:layout_constraintEnd_toEndOf="@+id/border_view"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/you_cigarette1"
+        app:srcCompat="@drawable/cigarrete" />
+
+    <ImageView
+        android:id="@+id/buddy_cigarette8"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="3dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/buddy_cigarette7"
+        app:layout_constraintEnd_toEndOf="@+id/border_view"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/you_cigarette1"
+        app:srcCompat="@drawable/cigarrete" />
+
+    <ImageView
+        android:id="@+id/buddy_cigarette9"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="3dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/buddy_cigarette8"
+        app:layout_constraintEnd_toEndOf="@+id/border_view"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/you_cigarette1"
         app:srcCompat="@drawable/cigarrete" />
 

@@ -15,11 +15,14 @@ public class BuddyPageActivity extends AppCompatActivity {
     float x1, x2, y1, y2;
 
     ImageView graph;
+    View menu_page2_week;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buddy_page1);
+
+        menu_page2_week = findViewById(R.id.weekMenu);
 
         // Code for Settings button
         ImageButton settingsButton = findViewById(R.id.settingsButton2);
@@ -56,11 +59,10 @@ public class BuddyPageActivity extends AppCompatActivity {
         buddyPack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),BuddyHalfLimitReachedActivity.class);
-                startActivity(intent);
-                System.out.println("hi");
-                /* ImageView graph = findViewById("@+id/imageView5");
-                graph.setVisibility(View.INVISIBLE); */
+                /*Intent intent = new Intent(getApplicationContext(),BuddyHalfLimitReachedActivity.class);
+                startActivity(intent);*/
+                ImageView graph = menu_page2_week.findViewById(R.id.imageView5);
+                graph.setVisibility(View.INVISIBLE);
 
             }
         });
