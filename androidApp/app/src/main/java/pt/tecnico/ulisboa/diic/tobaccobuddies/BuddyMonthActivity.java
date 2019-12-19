@@ -30,18 +30,7 @@ public class BuddyMonthActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-        // Code for swipe left button
-        ImageButton swipeLeftButton = findViewById(R.id.swipe_left);
-        swipeLeftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // start the correspondent Activity
-                Intent intent = new Intent(getApplicationContext(), MenuWeekActivity.class);
-                startActivity(intent);
-            }
-        });
+        
 
     }
 

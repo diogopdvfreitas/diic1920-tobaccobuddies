@@ -8,19 +8,6 @@
     android:layout_marginTop="10dp"
     tools:context=".MainActivity">
 
-    <ImageButton
-        android:id="@+id/swipe_left"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="691dp"
-        android:layout_marginBottom="95dp"
-        android:background="@drawable/left_arrow_2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/settings_background"
         android:layout_width="85dp"

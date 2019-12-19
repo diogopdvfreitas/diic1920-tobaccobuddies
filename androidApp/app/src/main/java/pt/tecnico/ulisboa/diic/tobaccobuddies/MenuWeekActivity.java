@@ -40,27 +40,6 @@ public class MenuWeekActivity extends AppCompatActivity {
             }
         });
 
-
-        //this swipe works
-        ImageButton swipeLeftButton = findViewById(R.id.swipe_left);
-        swipeLeftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BuddyPageActivity.class);
-                System.out.println(intent);
-                startActivity(intent);
-            }
-        });
-
-        ImageButton swipeRight = findViewById(R.id.swipe_right);
-        swipeRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BuddyMonthActivity.class);
-                System.out.println(intent);
-                startActivity(intent);
-            }
-        });
     }
 
     public boolean onTouchEvent(MotionEvent touchEvent){
