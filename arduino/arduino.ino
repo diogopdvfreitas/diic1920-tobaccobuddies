@@ -5,13 +5,16 @@
 
 /* --- GLOBAL VARIABLES --- */
 
-const int INCR_BUTTON = 23;
-const int DECR_BUTTON = 22;
+const uint8_t MYCIGS_BUTTONPIN = 23;
+const uint8_t BDCIGS_BUTTONPIN = 22;
 
 const uint8_t SENSE_ECHOPIN = 27;
 const uint8_t SENSE_TRIGPIN = 26;
 
-const uint8_t NEOPIXEL_PIN = 5;
+const uint8_t MYNEOPIXEL_PIN = 5;
+const uint8_t BDNEOPIXEL_PIN = 14;
+
+const uint8_t VIBRMOD_PIN = 12;
 
 const uint8_t R_PIN = 18;
 const uint8_t G_PIN = 19;
@@ -20,44 +23,50 @@ const uint8_t R_LED = 1;
 const uint8_t G_LED = 2;
 const uint8_t B_LED = 3;
 
-const uint8_t LEDSTRIP_R_PIN = 14;
-const uint8_t LEDSTRIP_G_PIN = 12;
-const uint8_t LEDSTRIP_B_PIN = 13;
-
 const char MESSAGE_START_CHAR = '<';
 const char MESSAGE_ENDED_CHAR = '>';
 
 BluetoothSerial esp32BT;
 
-char messageReceived[100];
+char receivedMessageBuffer[100];
+String receivedMessage;
 
 /* --- COMPONENTS VARIABLES --- */
 
-const int LONG_PRESS = 3000;
+const int LONG_PRESS = 1000;
 const int MAX_DISTANCE = 50;
 const int N_PIXELS = 8;
 
-int currIncrButtState = 0;                // Button's current state
-int lastIncrButtState = 0;                // Button's state in the last loop
-int incrTimeStartPressed = 0;             // Time the button was pressed
-int incrTimeEndPressed = 0;               // Time the button was released
-int incrTimeHold = 0;                     // How long the button was held
-int incrTimeReleased = 0;                 // How long the button released
+int currMyButtState = 0;                  // Button's current state
+int lastMyButtState = 0;                  // Button's state in the last loop
+int myButtTimeStartPressed = 0;           // Time the button was pressed
+int myButtTimeEndPressed = 0;             // Time the button was released
+int myButtTimeHold = 0;                   // How long the button was held
+int myButtTimeReleased = 0;               // How long the button released
 
-int currDecrButtState = 0;                // Button's current state
-int lastDecrButtState = 0;                // Button's state in the last loop
-int decrTimeStartPressed = 0;             // Time the button was pressed
-int decrTimeEndPressed = 0;               // Time the button was released
-int decrTimeHold = 0;                     // How long the button was held
-int decrTimeReleased = 0;                 // How long the button released
+int currBdButtState = 0;                  // Button's current state
+int lastBdButtState = 0;                  // Button's state in the last loop
+int bdButtTimeStartPressed = 0;           // Time the button was pressed
+int bdButtTimeEndPressed = 0;             // Time the button was released
+int bdButtTimeHold = 0;                   // How long the button was held
+int bdButtTimeReleased = 0;               // How long the button released
 
 NewPing sonar(SENSE_TRIGPIN, SENSE_ECHOPIN);
 double distance;
 
-Adafruit_NeoPixel pixels(N_PIXELS, NEOPIXEL_PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel mypixels(N_PIXELS, MYNEOPIXEL_PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel bdpixels(N_PIXELS, BDNEOPIXEL_PIN, NEO_GRB + NEO_KHZ800);
 
 int timeLedChange = 0;
 bool flagLEDBlink_awtConn = false;
+
+int vibDuration = 0;
+bool flagConstVibrate = false;
+
+int timeVibChange = 0;
+int vibCounter = 0;
+int vibNTimes = 0;
+bool flagInterVibrate = false;
 
 /* --- FUNCTIONALITY VARIABLES --- */
 
@@ -75,8 +84,8 @@ void setup() {
   flagLEDBlink_awtConn = true;
   esp32BT.register_callback(callback);
 
-  pinMode(INCR_BUTTON, INPUT);
-  pinMode(DECR_BUTTON, INPUT);
+  pinMode(MYCIGS_BUTTONPIN, INPUT);
+  pinMode(BDCIGS_BUTTONPIN, INPUT);
 
   pinMode(SENSE_ECHOPIN, INPUT);
   pinMode(SENSE_TRIGPIN, OUTPUT);
@@ -88,13 +97,11 @@ void setup() {
   ledcAttachPin(G_PIN, G_LED);
   ledcAttachPin(B_PIN, B_LED);
 
-  digitalWrite(LEDSTRIP_R_PIN, HIGH);
-  digitalWrite(LEDSTRIP_G_PIN, HIGH);
-  digitalWrite(LEDSTRIP_B_PIN, HIGH);
-
-  pixels.begin();
+  mypixels.begin(); setColorBOS_Aux(-1);
+  bdpixels.begin(); setBuddieColorBOS_Aux(-1);
 
   setColorBasedOnSmoked();
+  setBuddieColorBasedOnSmoked();
 }    
 
 /* --- LOPP & LOOP_AUX METHODS --- */
@@ -106,26 +113,26 @@ void loop() {
     incrementCigsSmoked();
   }
 
-  currIncrButtState = digitalRead(INCR_BUTTON);
-  if (currIncrButtState != lastIncrButtState) {
+  currMyButtState = digitalRead(MYCIGS_BUTTONPIN);
+  if (currMyButtState != lastMyButtState) {
     updateIncrButtonState();
-    if (currIncrButtState == LOW && incrTimeHold <= LONG_PRESS) {
+    if (currMyButtState == LOW && myButtTimeHold <= LONG_PRESS) {
       incrementCigsSmoked();
     }
-    if (currIncrButtState == LOW && incrTimeHold >= LONG_PRESS) {
+    if (currMyButtState == LOW && myButtTimeHold >= LONG_PRESS) {
       decrementCigsSmoked();
     }
   }
   else
     updateIncrButtonCounter();
 
-  currDecrButtState = digitalRead(DECR_BUTTON);
-  if (currDecrButtState != lastDecrButtState) {
+  currBdButtState = digitalRead(BDCIGS_BUTTONPIN);
+  if (currBdButtState != lastBdButtState) {
     updateDecrButtonState();
-    if (currDecrButtState == LOW && decrTimeHold <= LONG_PRESS) {
+    if (currBdButtState == LOW && bdButtTimeHold <= LONG_PRESS) {
       incrementBuddiesCigsSmoked();
     }
-    if (currDecrButtState == LOW && decrTimeHold >= LONG_PRESS) {
+    if (currBdButtState == LOW && bdButtTimeHold >= LONG_PRESS) {
       decrementBuddiesCigsSmoked();
     }
   }
@@ -133,54 +140,83 @@ void loop() {
     updateDecrButtonCounter();
 
   int ledChangeElapsedTime = millis() - timeLedChange;
-  if(flagLEDBlink_awtConn && ledChangeElapsedTime >= 5000) {
+  if (flagLEDBlink_awtConn && ledChangeElapsedTime >= 5000) {
     ledBlink(2, 0.15, 0, 0, 255);
   }
 
+  int vibChangeElapsedTime = millis() - timeVibChange;
+  if (flagConstVibrate && vibChangeElapsedTime >= vibDuration) {
+    vibrationOff();
+    flagConstVibrate = false;
+  }
+
+  if (flagInterVibrate) {
+    int vibState = digitalRead(VIBRMOD_PIN);
+    if (vibChangeElapsedTime >= vibDuration && vibState == HIGH){
+      vibrationOff();
+    }
+    if (vibChangeElapsedTime >= vibDuration && vibState == LOW) {
+      vibrationOn();
+      vibCounter++;
+      if (vibCounter == vibNTimes)
+        flagInterVibrate = false;
+    }
+  }
+
   btReceiveMessage();
-  //setColorBasedOnSmoked();
-  lastIncrButtState = currIncrButtState;
-  lastDecrButtState = currDecrButtState;
+  if (receivedMessage.substring(0, 6).compareTo("MLIMIT") == 0){
+    setMyLimit(receivedMessage.substring(7).toInt());
+  }
+  if (receivedMessage.substring(0, 6).compareTo("BUDDIE") == 0){
+    setBuddiesCigsSmoked(receivedMessage.substring(7).toInt());
+  }
+  if (receivedMessage.substring(0, 6).compareTo("BLIMIT") == 0){
+    setBuddiesLimit(receivedMessage.substring(7).toInt());
+  }
+  receivedMessage = "";
+
+  lastMyButtState = currMyButtState;
+  lastBdButtState = currBdButtState;
 }
 
 void updateIncrButtonState() {
   /*  HIGH == Button Pressed 
       LOW == Button Released */
-  if(currIncrButtState == LOW) {
-    incrTimeStartPressed = millis();                                // Registers the time the button was pressed
-    incrTimeReleased = incrTimeStartPressed - incrTimeEndPressed;   // Registers how long the button was released
+  if(currMyButtState == HIGH) {
+    myButtTimeStartPressed = millis();                                // Registers the time the button was pressed
+    myButtTimeReleased = myButtTimeStartPressed - myButtTimeEndPressed;   // Registers how long the button was released
   }
   else {
-    incrTimeEndPressed = millis();                                  // Registers the time the button was released
-    incrTimeHold = incrTimeEndPressed - incrTimeStartPressed;       // Registers how long the button was held down
+    myButtTimeEndPressed = millis();                                  // Registers the time the button was released
+    myButtTimeHold = myButtTimeEndPressed - myButtTimeStartPressed;       // Registers how long the button was held down
   }
 }
 
 void updateIncrButtonCounter() {
-  if(currIncrButtState == LOW)
-    incrTimeHold = millis() - incrTimeStartPressed;                 // Registers for how long the button has been pressed currently
+  if(currMyButtState == HIGH)
+    myButtTimeHold = millis() - myButtTimeStartPressed;                 // Registers for how long the button has been pressed currently
   else
-    incrTimeReleased = millis() - incrTimeEndPressed;               // Registers for how long the button has been released currently
+    myButtTimeReleased = millis() - myButtTimeEndPressed;               // Registers for how long the button has been released currently
 }
 
 void updateDecrButtonState() {
   /*  HIGH == Button Pressed 
       LOW == Button Released */
-  if(currDecrButtState == LOW) {
-    decrTimeStartPressed = millis();                                // Registers the time the button was pressed
-    decrTimeReleased = decrTimeStartPressed - decrTimeEndPressed;   // Registers how long the button was released
+  if(currBdButtState == HIGH) {
+    bdButtTimeStartPressed = millis();                                // Registers the time the button was pressed
+    bdButtTimeReleased = bdButtTimeStartPressed - bdButtTimeEndPressed;   // Registers how long the button was released
   }
   else {
-    decrTimeEndPressed = millis();                                  // Registers the time the button was released
-    decrTimeHold = decrTimeEndPressed - decrTimeStartPressed;       // Registers how long the button was held down
+    bdButtTimeEndPressed = millis();                                  // Registers the time the button was released
+    bdButtTimeHold = bdButtTimeEndPressed - bdButtTimeStartPressed;       // Registers how long the button was held down
   }
 }
 
 void updateDecrButtonCounter() {
-  if(currDecrButtState == LOW)
-    decrTimeHold = millis() - decrTimeStartPressed;                 // Registers for how long the button has been pressed currently
+  if(currBdButtState == HIGH)
+    bdButtTimeHold = millis() - bdButtTimeStartPressed;                 // Registers for how long the button has been pressed currently
   else
-    decrTimeReleased = millis() - decrTimeEndPressed;               // Registers for how long the button has been released currently
+    bdButtTimeReleased = millis() - bdButtTimeEndPressed;               // Registers for how long the button has been released currently
 }
 
 /* --- AUXILIARY METHODS --- */
@@ -189,6 +225,29 @@ void setColor (uint32_t red, uint32_t green, uint32_t blue) {
   ledcWrite(R_LED, red);   
   ledcWrite(G_LED, green); 
   ledcWrite(B_LED, blue); 
+}
+
+void vibrationOn() {
+  digitalWrite(VIBRMOD_PIN, HIGH);
+  timeVibChange = millis();
+}
+
+void vibrationOff() {
+  digitalWrite(VIBRMOD_PIN, LOW);
+  timeVibChange = millis();
+}
+
+void constVibrate(float duration){
+  vibDuration = duration * 1000;
+  flagConstVibrate = true;
+  vibrationOn();
+}
+
+void interVibrate(float nTimes, float nTimeAppart) {
+  vibNTimes = nTimes;
+  vibDuration = nTimeAppart;
+  flagInterVibrate = true;
+  vibrationOn();
 }
 
 void ledBlink(unsigned char red, unsigned char green, unsigned char blue) {
@@ -202,7 +261,7 @@ void ledBlink(unsigned char red, unsigned char green, unsigned char blue) {
 void ledBlink(int nTimes, float nTimeAppart, unsigned char red, unsigned char green, unsigned char blue) {
   int prevColor[] = {ledcRead(R_LED), ledcRead(G_LED), ledcRead(B_LED)};
   int mills = nTimeAppart * 1000;
-  for(int i = 0; i <= nTimes - 1; i++) {
+  for (int i = 0; i <= nTimes - 1; i++) {
     setColor(red, green, blue); delay(mills); setColor(0, 0, 0); delay(mills);
   }
   setColor(prevColor[0], prevColor[1], prevColor[2]);
@@ -246,18 +305,40 @@ void decrementCigsSmoked() {
   }
 }
 
+void setMyLimit(int nCigarettes) {
+  limit = nCigarettes;
+  Serial.print("Limit changed to: "); Serial.println(limit);
+  setColorBasedOnSmoked();
+}
+
+void setBuddiesCigsSmoked(int nCigarettes) {
+  buddieCigarettesSmoked = nCigarettes;
+  Serial.print("Buddie's Number of Cigarettes Smoked: "); Serial.println(buddieCigarettesSmoked);
+  //esp32BT.print("BUDDIE_SMOKED "); esp32BT.println(buddieCigarettesSmoked);
+  setBuddieColorBasedOnSmoked();
+}
+
 void incrementBuddiesCigsSmoked() {
   buddieCigarettesSmoked++;
   Serial.print("Buddie's Number of Cigarettes Smoked: "); Serial.println(buddieCigarettesSmoked);
-  esp32BT.print("BUDDIE_SMOKED "); esp32BT.println(buddieCigarettesSmoked);
+  //esp32BT.print("BUDDIE_SMOKED "); esp32BT.println(buddieCigarettesSmoked);
+  setBuddieColorBasedOnSmoked();
 }
 
 void decrementBuddiesCigsSmoked() {
   if (buddieCigarettesSmoked > 0) {
     buddieCigarettesSmoked--;
     Serial.print("Buddie's Number of Cigarettes Smoked: "); Serial.println(buddieCigarettesSmoked);
-    esp32BT.print("BUDDIE_SMOKED "); esp32BT.println(buddieCigarettesSmoked);
+    //esp32BT.print("BUDDIE_SMOKED "); esp32BT.println(buddieCigarettesSmoked);
+    setBuddieColorBasedOnSmoked();
   }
+}
+
+void setBuddiesLimit(int nCigarettes) {
+  buddieLimit = nCigarettes;
+  Serial.print("Buddie's Limit changed to: "); Serial.println(buddieLimit);
+  //esp32BT.print("BUDDIE_SMOKED "); esp32BT.println(buddieCigarettesSmoked);
+  setBuddieColorBasedOnSmoked();
 }
 
 void setColorBasedOnSmoked() {
@@ -278,35 +359,107 @@ void setColorBasedOnSmoked() {
   }
   setColor(red, green, 0);
 
-  //red = red * 0.1;
-  //green = green * 0.;
-  uint32_t color = pixels.Color(red , green, 0);
+  uint32_t color = mypixels.Color(red , green, 0);
   
   if (percentage * 100 > 0) {
-   pixels.setPixelColor(0, color);
+   mypixels.setPixelColor(0, color);
+   setColorBOS_Aux(0);
   }
   if (percentage * 100 > 12.5) {
-    pixels.setPixelColor(1, color);
+    mypixels.setPixelColor(1, color);
+    setColorBOS_Aux(1);
   }
   if (percentage * 100 > 25) {
-    pixels.setPixelColor(2, color);
+    mypixels.setPixelColor(2, color);
+    setColorBOS_Aux(2);
   }
   if (percentage * 100 > 37.5) {
-    pixels.setPixelColor(3, color);
+    mypixels.setPixelColor(3, color);
+    setColorBOS_Aux(3);
   }
   if (percentage * 100 > 50) {
-    pixels.setPixelColor(4, color);
+    mypixels.setPixelColor(4, color);
+    setColorBOS_Aux(4);
   }
   if (percentage * 100 > 62.5) {
-    pixels.setPixelColor(5, color);
+    mypixels.setPixelColor(5, color);
+    setColorBOS_Aux(5);
   }
   if (percentage * 100 > 75) {
-    pixels.setPixelColor(6, color);
+    mypixels.setPixelColor(6, color);
+    setColorBOS_Aux(6);
   }
   if (percentage * 100 > 87.5) {
-    pixels.setPixelColor(7, color);
+    mypixels.setPixelColor(7, color);
+    setColorBOS_Aux(7);
   }
-  pixels.show();
+  mypixels.show();
+}
+
+void setColorBOS_Aux(int pixel) {
+  uint32_t black = mypixels.Color(0, 0, 0);
+  for (int i = pixel + 1; i <= 8; i++)
+    mypixels.setPixelColor(i, black);
+}
+
+void setBuddieColorBasedOnSmoked() {
+  float percentage = (float) buddieCigarettesSmoked / (float) buddieLimit;
+  int red = analogRead(R_PIN);
+  int green = analogRead(G_PIN);
+  if (percentage <= 0.5) {
+    red = (int) round(255 * (percentage * 2));
+    if (red < 0) red = 0;
+    if (red > 255) red = 255;
+    green = 255;
+  }
+  if (percentage >= 0.5) {
+    green = (int) round(255 * ((1 - percentage) * 2));
+    red = 255;
+    if (green < 0) green = 0;
+    if (green > 255) green = 255;
+  }
+
+  uint32_t color = bdpixels.Color(red , green, 0);
+  
+  if (percentage * 100 > 0.1) {
+   bdpixels.setPixelColor(0, color);
+   setBuddieColorBOS_Aux(0);
+  }
+  if (percentage * 100 > 12.5) {
+    bdpixels.setPixelColor(1, color);
+    setBuddieColorBOS_Aux(1);
+  }
+  if (percentage * 100 > 25) {
+    bdpixels.setPixelColor(2, color);
+    setBuddieColorBOS_Aux(2);
+  }
+  if (percentage * 100 > 37.5) {
+    bdpixels.setPixelColor(3, color);
+    setBuddieColorBOS_Aux(3);
+  }
+  if (percentage * 100 > 50) {
+    bdpixels.setPixelColor(4, color);
+    setBuddieColorBOS_Aux(4);
+  }
+  if (percentage * 100 > 62.5) {
+    bdpixels.setPixelColor(5, color);
+    setBuddieColorBOS_Aux(5);
+  }
+  if (percentage * 100 > 75) {
+    bdpixels.setPixelColor(6, color);
+    setBuddieColorBOS_Aux(6);
+  }
+  if (percentage * 100 > 87.5) {
+    bdpixels.setPixelColor(7, color);
+    setBuddieColorBOS_Aux(7);
+  }
+  bdpixels.show();
+}
+
+void setBuddieColorBOS_Aux(int pixel) {
+  uint32_t black = bdpixels.Color(0, 0, 0);
+  for (int i = pixel + 1; i <= 8; i++)
+    bdpixels.setPixelColor(i, black);
 }
 
 void btReceiveMessage() {
@@ -315,19 +468,20 @@ void btReceiveMessage() {
     char c = esp32BT.read();
     if (c == MESSAGE_START_CHAR) {
       i = 0;
-      messageReceived[i] = '\0';
+      receivedMessageBuffer[i] = '\0';
     }
     else if (c == MESSAGE_ENDED_CHAR) {
-      Serial.print("Received: "); Serial.println(messageReceived);
+      receivedMessage = String(receivedMessageBuffer);
+      Serial.print("Received: "); Serial.println(receivedMessage);
       break;
     }
     else {
       if (i < 99) {
-        messageReceived[i] = c;
+        receivedMessageBuffer[i] = c;
         i++;
-        messageReceived[i] = '\0';
+        receivedMessageBuffer[i] = '\0';
       }
     }
   }
-  messageReceived[0] = '\0';
+  receivedMessageBuffer[0] = '\0';
 }
