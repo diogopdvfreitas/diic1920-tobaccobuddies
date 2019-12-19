@@ -87,6 +87,8 @@ void setup() {
   pinMode(MYCIGS_BUTTONPIN, INPUT);
   pinMode(BDCIGS_BUTTONPIN, INPUT);
 
+  pinMode(VIBRMOD_PIN, OUTPUT);
+
   pinMode(SENSE_ECHOPIN, INPUT);
   pinMode(SENSE_TRIGPIN, OUTPUT);
 
@@ -144,6 +146,7 @@ void loop() {
     ledBlink(2, 0.15, 0, 0, 255);
   }
 
+  int vibState = digitalRead(VIBRMOD_PIN);
   int vibChangeElapsedTime = millis() - timeVibChange;
   if (flagConstVibrate && vibChangeElapsedTime >= vibDuration) {
     vibrationOff();
@@ -151,7 +154,6 @@ void loop() {
   }
 
   if (flagInterVibrate) {
-    int vibState = digitalRead(VIBRMOD_PIN);
     if (vibChangeElapsedTime >= vibDuration && vibState == HIGH){
       vibrationOff();
     }
@@ -270,12 +272,14 @@ void ledBlink(int nTimes, float nTimeAppart, unsigned char red, unsigned char gr
 
 void callback(esp_spp_cb_event_t event, esp_spp_cb_param_t *param){
   if(event == ESP_SPP_SRV_OPEN_EVT){
+    constVibrate(0.5);
     Serial.println("Client Connected");
     esp32BT.print("SMOKED "); esp32BT.println(cigarettesSmoked);
     flagLEDBlink_awtConn = false;
   }
 
   if(event == ESP_SPP_CLOSE_EVT){
+    constVibrate(0.5);
     Serial.println("Client disconnected");
     flagLEDBlink_awtConn = true;
     timeLedChange = millis();
@@ -292,6 +296,9 @@ void incrementCigsSmoked() {
     ledBlink(2, 0.5, 255, 0, 0);
   else
     ledBlink(5, 0.25, 255, 0, 0);
+  if (cigarettesSmoked >= limit) {
+    constVibrate(2);
+  }
   setColorBasedOnSmoked();
 }
 
@@ -315,6 +322,9 @@ void setBuddiesCigsSmoked(int nCigarettes) {
   buddieCigarettesSmoked = nCigarettes;
   Serial.print("Buddie's Number of Cigarettes Smoked: "); Serial.println(buddieCigarettesSmoked);
   //esp32BT.print("BUDDIE_SMOKED "); esp32BT.println(buddieCigarettesSmoked);
+  if (buddieCigarettesSmoked >= buddieLimit){
+    interVibrate(3, 0.5);
+  }
   setBuddieColorBasedOnSmoked();
 }
 
@@ -322,6 +332,9 @@ void incrementBuddiesCigsSmoked() {
   buddieCigarettesSmoked++;
   Serial.print("Buddie's Number of Cigarettes Smoked: "); Serial.println(buddieCigarettesSmoked);
   //esp32BT.print("BUDDIE_SMOKED "); esp32BT.println(buddieCigarettesSmoked);
+  if (buddieCigarettesSmoked >= buddieLimit){
+    interVibrate(3, 0.5);
+  }
   setBuddieColorBasedOnSmoked();
 }
 
