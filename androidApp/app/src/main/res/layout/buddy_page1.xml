@@ -10,30 +10,6 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/epuppy_background"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/border_epuppy_settings"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/epuppyButton2"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:background="#eaa289"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="@+id/epuppy_background"
-        app:layout_constraintTop_toTopOf="@+id/epuppy_background"
-        app:srcCompat="@drawable/e_puppy" />
-
-    <TextView
         android:id="@+id/settings_background"
         android:layout_width="85dp"
         android:layout_height="85dp"
@@ -63,9 +39,9 @@
         android:layout_height="78dp"
         android:layout_marginStart="84dp"
         android:layout_marginLeft="84dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="98dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/epuppyButton2"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo1" />
 
     <ImageView
@@ -74,9 +50,9 @@
         android:layout_height="78dp"
         android:layout_marginStart="87dp"
         android:layout_marginLeft="87dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="98dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/epuppyButton2"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo2" />
 
     <TextView

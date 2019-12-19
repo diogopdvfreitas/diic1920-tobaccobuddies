@@ -37,16 +37,6 @@ public class MenuWeekActivity extends AppCompatActivity {
             }
         });
 
-        // Code for E-Puppy button
-        ImageButton ePuppyButton = findViewById(R.id.epuppyButton);
-        ePuppyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // start an EPuppyActivity
-                Intent intent = new Intent(getApplicationContext(), EPuppyActivity.class);
-                startActivity(intent);
-            }
-        });
 
         Button year = (Button) findViewById(R.id.yearButton);
         year.setOnClickListener(new View.OnClickListener() {

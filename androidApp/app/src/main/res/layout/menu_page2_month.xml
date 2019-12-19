@@ -16,9 +16,9 @@
         android:layout_marginTop="80dp"
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
+        android:background="@drawable/right_arrow_2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2"
-        android:background="@drawable/right_arrow_2" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
 
     <ImageButton
         android:id="@+id/swipe_left"
@@ -27,33 +27,9 @@
         android:layout_marginStart="60dp"
         android:layout_marginLeft="60dp"
         android:layout_marginTop="80dp"
+        android:background="@drawable/left_arrow_2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2"
-        android:background="@drawable/left_arrow_2" />
-
-    <TextView
-        android:id="@+id/epuppy_background"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/border_epuppy_settings"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/epuppyButton"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:background="#eaa289"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="@+id/epuppy_background"
-        app:layout_constraintTop_toTopOf="@+id/epuppy_background"
-        app:srcCompat="@drawable/e_puppy" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
 
     <TextView
         android:id="@+id/settings_background"
@@ -83,12 +59,12 @@
         android:id="@+id/currentMonth"
         android:layout_width="222dp"
         android:layout_height="57dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="124dp"
         android:text="November"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/epuppyButton" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"

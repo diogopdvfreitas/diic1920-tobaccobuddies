@@ -26,17 +26,6 @@ public class BuddyPageActivity extends AppCompatActivity {
             }
         });
 
-        // Code for E-Puppy button
-        ImageButton ePuppyButton = findViewById(R.id.epuppyButton2);
-        ePuppyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // start an EPuppyActivity
-                Intent intent = new Intent(getApplicationContext(), EPuppyActivity.class);
-                startActivity(intent);
-            }
-        });
-
         // Code for swipe right button
         ImageButton swipeRightButton = findViewById(R.id.swipe_right);
         swipeRightButton.setOnClickListener(new View.OnClickListener() {

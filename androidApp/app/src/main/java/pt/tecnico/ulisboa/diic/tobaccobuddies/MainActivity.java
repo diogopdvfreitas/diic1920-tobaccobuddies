@@ -1,16 +1,22 @@
 package pt.tecnico.ulisboa.diic.tobaccobuddies;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 
 public class MainActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +34,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         // DEBUG used to launch activities to test
         Intent intent = new Intent(this, BuddyPageActivity.class);
         startActivity(intent);
 
 
+
     }
+
 
     //Open shared preferences (Settings) to check if the values exist
     private void checkDefaultSettings(){
