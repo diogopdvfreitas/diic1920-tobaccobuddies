@@ -19,14 +19,22 @@ public class BuddyPageActivity extends AppCompatActivity {
     //ImageView graph;
     View menu_page2_week;
 
-    SharedPreferences sharedPreferences;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buddy_page1);
 
         menu_page2_week = findViewById(R.id.weekMenu);
+
+        final SharedPreferences sharedPreferences = getSharedPreferences("editor", 0);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        boolean aux = sharedPreferences.getBoolean("tag", false);
+        final boolean[] check = {aux};
+
+        editor.putBoolean(String.valueOf(sharedPreferences), aux).apply();
+
+        checkVisibility(check[0]);
 
         // Code for Settings button
         ImageButton settingsButton = findViewById(R.id.settingsButton2);
@@ -64,15 +72,13 @@ public class BuddyPageActivity extends AppCompatActivity {
         youPack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(findViewById(R.id.you_cigarette5).getVisibility() == View.VISIBLE) {
-                    findViewById(R.id.you_cigarette6).setVisibility(View.VISIBLE);
-                }
-                if(findViewById(R.id.you_cigarette4).getVisibility() == View.VISIBLE) {
-                    findViewById(R.id.you_cigarette5).setVisibility(View.VISIBLE);
-                }
-                if(findViewById(R.id.you_cigarette4).getVisibility() != View.VISIBLE)
+                checkVisibility(check[0]);
+                if(!(check[0])) {
+                    check[0] = true;
+                    editor.putBoolean("tag", check[0]).commit();
                     findViewById(R.id.you_cigarette4).setVisibility(View.VISIBLE);
-
+                }
+                checkVisibility(check[0]);
 
             }
         });
@@ -81,17 +87,15 @@ public class BuddyPageActivity extends AppCompatActivity {
         buddyPack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent = new Intent(getApplicationContext(),BuddyHalfLimitReachedActivity.class);
-                startActivity(intent);
-                ImageView graph = menu_page2_week.findViewById(R.id.imageView5);
-                graph.setVisibility(View.INVISIBLE);*/
 
-                if(findViewById(R.id.buddy_cigarette4).getVisibility() == View.VISIBLE)
-                    findViewById(R.id.buddy_cigarette5).setVisibility(View.VISIBLE);
-                if(findViewById(R.id.buddy_cigarette3).getVisibility() == View.VISIBLE)
-                    findViewById(R.id.buddy_cigarette4).setVisibility(View.VISIBLE);
-                if(findViewById(R.id.buddy_cigarette3).getVisibility() != View.VISIBLE)
+                /*REMOVE CHECK[0] CODE, THIS IS ONLY FOR TEST PURPOSES*/
+
+                if(check[0]) {
                     findViewById(R.id.buddy_cigarette3).setVisibility(View.VISIBLE);
+                    check[0] = false;
+                    editor.putBoolean("tag", check[0]).commit();
+                }
+                checkVisibility(check[0]);
             }
         });
 
@@ -116,6 +120,16 @@ public class BuddyPageActivity extends AppCompatActivity {
         });
 
     }
+
+    public void checkVisibility(boolean b){
+        if(b){
+            System.out.println("b is true");
+            findViewById(R.id.you_cigarette4).setVisibility(View.VISIBLE);
+        }
+        else{
+            findViewById(R.id.you_cigarette4).setVisibility(View.INVISIBLE);
+        }
+   }
 
     public boolean onTouchEvent(MotionEvent touchEvent){
         switch(touchEvent.getAction()){
