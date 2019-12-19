@@ -14,6 +14,8 @@ public class BuddyPageActivity extends AppCompatActivity {
 
     float x1, x2, y1, y2;
 
+    ImageView graph;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +58,9 @@ public class BuddyPageActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),BuddyHalfLimitReachedActivity.class);
                 startActivity(intent);
+                System.out.println("hi");
+                /* ImageView graph = findViewById("@+id/imageView5");
+                graph.setVisibility(View.INVISIBLE); */
 
             }
         });
