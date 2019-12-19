@@ -25,15 +25,6 @@ public class MainActivity extends AppCompatActivity {
         //Open shared preferences (Settings) to check if the values exist
         checkDefaultSettings();
 
-        ImageView cigarettes = findViewById(R.id.you_pack);
-        cigarettes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HalfLimitReachedActivity.class);
-                startActivity(intent);
-            }
-        });
-
 
         // DEBUG used to launch activities to test
         Intent intent = new Intent(this, BuddyPageActivity.class);
