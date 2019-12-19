@@ -2,7 +2,9 @@ package pt.tecnico.ulisboa.diic.tobaccobuddies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,8 +16,10 @@ public class BuddyPageActivity extends AppCompatActivity {
 
     float x1, x2, y1, y2;
 
-    ImageView graph;
+    //ImageView graph;
     View menu_page2_week;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,20 +59,54 @@ public class BuddyPageActivity extends AppCompatActivity {
             }
         });
 
+
+        ImageView youPack = findViewById(R.id.you_pack);
+        youPack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(findViewById(R.id.you_cigarette5).getVisibility() == View.VISIBLE) {
+                    findViewById(R.id.you_cigarette6).setVisibility(View.VISIBLE);
+                }
+                if(findViewById(R.id.you_cigarette4).getVisibility() == View.VISIBLE) {
+                    findViewById(R.id.you_cigarette5).setVisibility(View.VISIBLE);
+                }
+                if(findViewById(R.id.you_cigarette4).getVisibility() != View.VISIBLE)
+                    findViewById(R.id.you_cigarette4).setVisibility(View.VISIBLE);
+
+
+            }
+        });
+
         ImageView buddyPack = findViewById(R.id.buddy_pack);
         buddyPack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 /*Intent intent = new Intent(getApplicationContext(),BuddyHalfLimitReachedActivity.class);
-                startActivity(intent);*/
+                startActivity(intent);
                 ImageView graph = menu_page2_week.findViewById(R.id.imageView5);
-                graph.setVisibility(View.INVISIBLE);
+                graph.setVisibility(View.INVISIBLE);*/
 
+                if(findViewById(R.id.buddy_cigarette4).getVisibility() == View.VISIBLE)
+                    findViewById(R.id.buddy_cigarette5).setVisibility(View.VISIBLE);
+                if(findViewById(R.id.buddy_cigarette3).getVisibility() == View.VISIBLE)
+                    findViewById(R.id.buddy_cigarette4).setVisibility(View.VISIBLE);
+                if(findViewById(R.id.buddy_cigarette3).getVisibility() != View.VISIBLE)
+                    findViewById(R.id.buddy_cigarette3).setVisibility(View.VISIBLE);
             }
         });
 
         ImageView cigaretteBuddy = findViewById(R.id.buddy_cigarette1);
         cigaretteBuddy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),BuddyHalfLimitReachedActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        ImageView cigaretteBuddy2 = findViewById(R.id.buddy_cigarette2);
+        cigaretteBuddy2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),BuddyLimitReachedActivity.class);
