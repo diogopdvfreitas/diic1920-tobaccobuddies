@@ -13,12 +13,12 @@
         android:id="@+id/swipe_right"
         android:layout_width="60dp"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="689dp"
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
         android:background="@drawable/right_arrow_2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/yearButton" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/swipe_left"
@@ -26,10 +26,10 @@
         android:layout_height="50dp"
         android:layout_marginStart="60dp"
         android:layout_marginLeft="60dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="689dp"
         android:background="@drawable/left_arrow_2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/monthButton" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/settings_background"
@@ -66,28 +66,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/monthButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="10dp"
-        android:text="Month"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
-
-    <Button
-        android:id="@+id/yearButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        android:text="Year"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
     <ImageView
         android:id="@+id/imageView5"

@@ -21,8 +21,6 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".EmptyActivity" />
         <activity android:name=".MenuWeekActivity" />
-        <activity android:name=".MenuMonthActivity" />
-        <activity android:name=".MenuYearActivity" />
         <activity android:name=".BuddyPageActivity" />
         <activity android:name=".NotificationsActivity" />
         <activity android:name=".MainActivity">
