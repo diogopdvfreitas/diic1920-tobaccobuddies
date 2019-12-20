@@ -36,8 +36,8 @@ public class BluetoothService extends Service {
     public BluetoothService() {
         System.out.println("----- Start service -----");
 
-        editor.putStringSet("my_monthly_data",["3","3","0","4","6","5","1","5","4","7","4","6","8","8","5","7","9","6","7","2","9","7","1","6","1","2","10","8","2","1"]);
-        editor.putStringSet("buddie_monthly_data", ["7","8","5","5","5","3","5","1","1","10","8","3","7","9","1","2","8","2","5","1","7","1","6","1","8","9","6","5","9","10"]);
+      //  editor.putStringSet("my_monthly_data",["3","3","0","4","6","5","1","5","4","7","4","6","8","8","5","7","9","6","7","2","9","7","1","6","1","2","10","8","2","1"]);
+      //  editor.putStringSet("buddie_monthly_data", ["7","8","5","5","5","3","5","1","1","10","8","3","7","9","1","2","8","2","5","1","7","1","6","1","8","9","6","5","9","10"]);
         editor.putInt("my_limit", 10);
         editor.putInt("buddie_limit", 15);
 
