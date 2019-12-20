@@ -90,7 +90,7 @@ public class BuddyPageActivity extends AppCompatActivity {
 
                 /*REMOVE CHECK[0] CODE, THIS IS ONLY FOR TEST PURPOSES*/
 
-                if(check[0]) {
+                if(check[0]) { //this if needs to only check the buddy_cigarette2 visibility
                     findViewById(R.id.buddy_cigarette3).setVisibility(View.VISIBLE);
                     check[0] = false;
                     editor.putBoolean("tag", check[0]).commit();
