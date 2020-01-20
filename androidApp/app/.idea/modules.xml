@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../Tobacco Buddies.iml" filepath="$PROJECT_DIR$/../Tobacco Buddies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../androidBluetoothSerial/androidBluetoothSerial.iml" filepath="$PROJECT_DIR$/../androidBluetoothSerial/androidBluetoothSerial.iml" />
       <module fileurl="file://$PROJECT_DIR$/app.iml" filepath="$PROJECT_DIR$/app.iml" />
     </modules>
   </component>
