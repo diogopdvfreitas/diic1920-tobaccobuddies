@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "586574183412",
+    "firebase_url": "https://tobacco-buddies.firebaseio.com",
+    "project_id": "tobacco-buddies",
+    "storage_bucket": "tobacco-buddies.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586574183412:android:2d3234a25cf4e1672c57a1",
+        "android_client_info": {
+          "package_name": "pt.tecnico.ulisboa.diic.tobaccobuddies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586574183412-73gnlsg4v6mlukluh6ne8c744ik9ukd6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK_KFO-uxviBtMzJrXhEFxZYNR7WP1HGo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586574183412-73gnlsg4v6mlukluh6ne8c744ik9ukd6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
